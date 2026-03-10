@@ -85,24 +85,22 @@ revealEls.forEach(el => observer.observe(el));
 
 /* ─── GlowCard spotlight pointer tracking (skills) ── */
 (function initGlowCards() {
-  const glowCards = document.querySelectorAll('.glow-card[data-glow]');
+  const glowCards = document.querySelectorAll('.glow-card');
   if (!glowCards.length) return;
 
-  /* Read per-card data attributes for base/spread */
+  /* Set per-card hue from data attribute */
   glowCards.forEach(card => {
-    const base   = card.dataset.glowBase   || 220;
-    const spread = card.dataset.glowSpread || 200;
-    card.style.setProperty('--base', base);
-    card.style.setProperty('--spread', spread);
+    const hue = card.dataset.glowHue || 220;
+    card.style.setProperty('--glow-hue', hue);
   });
 
   document.addEventListener('pointermove', e => {
-    const { clientX: x, clientY: y } = e;
     glowCards.forEach(card => {
-      card.style.setProperty('--x', x.toFixed(2));
-      card.style.setProperty('--y', y.toFixed(2));
-      card.style.setProperty('--xp', (x / window.innerWidth).toFixed(2));
-      card.style.setProperty('--yp', (y / window.innerHeight).toFixed(2));
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--glow-x', x + 'px');
+      card.style.setProperty('--glow-y', y + 'px');
     });
   }, { passive: true });
 })();
@@ -117,21 +115,20 @@ revealEls.forEach(el => observer.observe(el));
   const SPREAD = 40;
 
   let animFrameId = 0;
+  let lastPointer = { x: 0, y: 0 };
 
   function handleMove(e) {
+    if (e) lastPointer = { x: e.clientX, y: e.clientY };
     if (animFrameId) cancelAnimationFrame(animFrameId);
     animFrameId = requestAnimationFrame(() => {
+      const mx = lastPointer.x;
+      const my = lastPointer.y;
       cards.forEach(card => {
-        const el = card.querySelector('.glowing-effect');
-        if (!el) return;
-
         const { left, top, width, height } = card.getBoundingClientRect();
-        const mouseX = e ? e.clientX : 0;
-        const mouseY = e ? e.clientY : 0;
 
         const centerX = left + width * 0.5;
         const centerY = top + height * 0.5;
-        const dist = Math.hypot(mouseX - centerX, mouseY - centerY);
+        const dist = Math.hypot(mx - centerX, my - centerY);
         const inactiveR = 0.5 * Math.min(width, height) * INACTIVE_ZONE;
 
         if (dist < inactiveR) {
@@ -140,17 +137,16 @@ revealEls.forEach(el => observer.observe(el));
         }
 
         const isActive =
-          mouseX > left - PROXIMITY &&
-          mouseX < left + width + PROXIMITY &&
-          mouseY > top - PROXIMITY &&
-          mouseY < top + height + PROXIMITY;
+          mx > left - PROXIMITY &&
+          mx < left + width + PROXIMITY &&
+          my > top - PROXIMITY &&
+          my < top + height + PROXIMITY;
 
         card.style.setProperty('--glowing-active', isActive ? '1' : '0');
 
         if (!isActive) return;
 
-        /* Compute angle for conic-gradient sweep */
-        const angle = (180 * Math.atan2(mouseY - centerY, mouseX - centerX)) / Math.PI + 90;
+        const angle = (180 * Math.atan2(my - centerY, mx - centerX)) / Math.PI + 90;
         const currentAngle = parseFloat(card.style.getPropertyValue('--glowing-start')) || 0;
         const diff = ((angle - currentAngle + 180) % 360) - 180;
         const newAngle = currentAngle + diff;
