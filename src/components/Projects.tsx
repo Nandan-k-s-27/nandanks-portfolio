@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { GitHubIcon, ExternalLinkIcon } from './Icons';
+import { GlowingEffect } from '@/components/ui/glowing-effect';
 
 interface ProjectLink {
   type: 'live' | 'github';
@@ -181,7 +182,14 @@ export default function Projects() {
               key={project.name}
               className={`project-card glowing-card${project.featured ? ' featured' : ''}`}
             >
-              <div className="glowing-effect" aria-hidden="true" />
+              <GlowingEffect
+                spread={40}
+                glow={true}
+                disabled={false}
+                proximity={64}
+                inactiveZone={0.01}
+                borderWidth={3}
+              />
               <div className="project-top">
                 <div className="project-icon-wrap">{project.icon}</div>
                 {project.featured && (

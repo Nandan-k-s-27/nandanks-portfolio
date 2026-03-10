@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { useTypewriter } from '../hooks/useTypewriter';
 import { GitHubIcon, LinkedInIcon } from './Icons';
 
@@ -11,58 +10,10 @@ const ROLES = [
 
 export default function Hero() {
   const roleText = useTypewriter(ROLES);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    let clickHandler: (() => void) | undefined;
-    const heroEl = document.getElementById('home');
-
-    (async () => {
-      try {
-        const cdnUrl =
-          'https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js';
-        const { default: TubesCursor } = await import(/* @vite-ignore */ cdnUrl);
-
-        const app = TubesCursor(canvas, {
-          tubes: {
-            colors: ['#6366f1', '#8b5cf6', '#a78bfa'],
-            lights: {
-              intensity: 200,
-              colors: ['#4f46e5', '#6366f1', '#c4b5fd', '#818cf8'],
-            },
-          },
-        });
-
-        document.querySelectorAll<HTMLElement>('.blob').forEach(el => {
-          el.style.transition = 'opacity 1.4s ease';
-          el.style.opacity = '0';
-        });
-
-        const randomHex = () =>
-          '#' + Math.floor(Math.random() * 16777216).toString(16).padStart(6, '0');
-
-        clickHandler = () => {
-          app.tubes.setColors([randomHex(), randomHex(), randomHex()]);
-          app.tubes.setLightsColors([randomHex(), randomHex(), randomHex(), randomHex()]);
-        };
-        heroEl?.addEventListener('click', clickHandler);
-      } catch (err) {
-        console.warn('Tubes background unavailable, using fallback.', err);
-      }
-    })();
-
-    return () => {
-      if (clickHandler) heroEl?.removeEventListener('click', clickHandler);
-    };
-  }, []);
 
   return (
     <section className="hero" id="home">
       <div className="hero-bg">
-        <canvas ref={canvasRef} className="hero-canvas" />
         <div className="hero-grid" />
         <div className="blob blob-1" />
         <div className="blob blob-2" />

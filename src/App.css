@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* ═══════════════════════════════════════════════════
    RESET & CUSTOM PROPERTIES
 ════════════════════════════════════════════════════ */
@@ -9,6 +13,7 @@
   --bg-card:      #131929;
   --bg-card-hover:#182040;
   --accent:       #6366f1;
+  --primary:      #6366f1;
   --accent-2:     #8b5cf6;
   --accent-glow:  rgba(99,102,241,.25);
   --text-primary: #e2e8f0;
@@ -78,31 +83,7 @@ ul { list-style: none; }
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
 }
 
-.nav-links { display: flex; gap: 2rem; }
-.nav-link {
-  font-size: .875rem; font-weight: 500; color: var(--text-sec);
-  position: relative; padding-block: 4px;
-  transition: color var(--transition);
-}
-.nav-link::after {
-  content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px;
-  background: var(--accent); border-radius: 2px; transition: width var(--transition);
-}
-.nav-link:hover, .nav-link.active { color: var(--text-primary); }
-.nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
-.hamburger {
-  display: none; flex-direction: column; gap: 5px;
-  background: none; border: none; cursor: pointer; padding: 4px;
-}
-.hamburger span {
-  display: block; width: 24px; height: 2px;
-  background: var(--text-primary); border-radius: 2px;
-  transition: all var(--transition);
-}
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ═══════════════════════════════════════════════════
    HERO
@@ -279,45 +260,6 @@ ul { list-style: none; }
 }
 .skill-card:hover { border-color: var(--border-hover); transform: translateY(-3px); box-shadow: var(--shadow-card); }
 
-/* ── GlowCard spotlight effect (spotlight-card port) ── */
-.glow-card {
-  overflow: visible;
-}
-
-/* Border glow — renders behind the card via z-index: -1 */
-.glow-card::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  background: radial-gradient(
-    350px circle at var(--glow-x, -999px) var(--glow-y, -999px),
-    hsla(var(--glow-hue, 220), 100%, 60%, 0.4),
-    transparent 40%
-  );
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-.glow-card:hover::before {
-  opacity: 1;
-}
-
-/* Internal spotlight shimmer */
-.glow-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    600px circle at var(--glow-x, -999px) var(--glow-y, -999px),
-    hsla(var(--glow-hue, 220), 100%, 70%, 0.07),
-    transparent 40%
-  );
-  pointer-events: none;
-  z-index: 0;
-}
-
 .skill-card-icon {
   width: 46px; height: 46px; border-radius: 10px;
   background: rgba(99,102,241,.12); border: 1px solid var(--border);
@@ -367,76 +309,12 @@ ul { list-style: none; }
 .project-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: var(--shadow); }
 .project-card.featured { border-color: rgba(99,102,241,.35); }
 
-/* ── GlowingEffect border (conic sweep on proximity) ── */
-.glowing-card {
-  --glowing-start: 0;
-  --glowing-active: 0;
-  --glowing-spread: 40;
-  --glowing-border-width: 2px;
-  overflow: visible;
-}
+/* GlowingEffect React component — overflow needed for shadow */
+.glowing-card { overflow: visible; }
 
-.glowing-effect {
-  pointer-events: none;
-  position: absolute;
-  inset: calc(-1 * var(--glowing-border-width));
-  border-radius: inherit;
-  opacity: 1;
-  transition: opacity .3s ease;
-  z-index: 0;
-}
-
-.glowing-effect::after {
-  content: "";
-  position: absolute;
-  inset: calc(-1 * var(--glowing-border-width));
-  border-radius: inherit;
-  border: var(--glowing-border-width) solid transparent;
-  background-attachment: fixed;
-  opacity: var(--glowing-active, 0);
-  transition: opacity 0.3s ease;
-  background-image:
-    radial-gradient(circle, #dd7bbb 10%, #dd7bbb00 20%),
-    radial-gradient(circle at 40% 40%, #d79f1e 5%, #d79f1e00 15%),
-    radial-gradient(circle at 60% 60%, #5a922c 10%, #5a922c00 20%),
-    radial-gradient(circle at 40% 60%, #4c7894 10%, #4c789400 20%),
-    conic-gradient(
-      from calc((var(--glowing-start, 0) - var(--glowing-spread, 40)) * 1deg) at 50% 50%,
-      transparent 0deg,
-      #dd7bbb,
-      #d79f1e calc(var(--glowing-spread, 40) * 0.5deg),
-      #5a922c calc(var(--glowing-spread, 40) * 1deg),
-      #4c7894 calc(var(--glowing-spread, 40) * 1.5deg),
-      #dd7bbb calc(var(--glowing-spread, 40) * 2deg),
-      transparent calc(var(--glowing-spread, 40) * 2deg)
-    );
-  -webkit-mask:
-    linear-gradient(#0000, #0000),
-    conic-gradient(
-      from calc((var(--glowing-start, 0) - var(--glowing-spread, 40)) * 1deg) at 50% 50%,
-      #00000000 0deg,
-      #fff,
-      #00000000 calc(var(--glowing-spread, 40) * 2deg)
-    );
-  mask:
-    linear-gradient(#0000, #0000),
-    conic-gradient(
-      from calc((var(--glowing-start, 0) - var(--glowing-spread, 40)) * 1deg) at 50% 50%,
-      #00000000 0deg,
-      #fff,
-      #00000000 calc(var(--glowing-spread, 40) * 2deg)
-    );
-  -webkit-mask-clip: padding-box, border-box;
-  mask-clip: padding-box, border-box;
-  -webkit-mask-composite: destination-in;
-  mask-composite: intersect;
-}
-
-/* Keep project card inner content above glowing layer */
-.glowing-card > *:not(.glowing-effect) {
-  position: relative;
-  z-index: 1;
-}
+/* Keep project card content above the absolute GlowingEffect layers */
+.glowing-card > * { position: relative; z-index: 1; }
+.glowing-card > .pointer-events-none { z-index: 0; }
 
 .project-top { display: flex; align-items: center; justify-content: space-between; }
 
@@ -590,17 +468,6 @@ ul { list-style: none; }
 }
 
 @media (max-width: 640px) {
-  .nav-links {
-    display: none; flex-direction: column; gap: 0;
-    position: fixed; top: var(--nav-h); inset-inline: 0;
-    background: rgba(10,14,26,.98); backdrop-filter: blur(16px);
-    padding: 1rem 0 2rem; border-bottom: 1px solid var(--border);
-    align-items: center;
-  }
-  .nav-links.open { display: flex; }
-  .nav-link { padding: .8rem 2rem; font-size: 1rem; width: 100%; text-align: center; }
-  .nav-link::after { display: none; }
-  .hamburger { display: flex; }
   .skills-grid { grid-template-columns: 1fr; }
   .hero-cta { flex-direction: column; }
 }

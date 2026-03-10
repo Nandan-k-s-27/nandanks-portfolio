@@ -1,9 +1,10 @@
 import type { ReactNode } from 'react';
+import { GlowCard } from '@/components/ui/spotlight-card';
 
 interface SkillCategory {
   title: string;
-  hue: string;
   tagClass: string;
+  glowColor: 'blue' | 'purple' | 'green' | 'red' | 'orange';
   icon: ReactNode;
   skills: string[];
 }
@@ -11,8 +12,8 @@ interface SkillCategory {
 const SKILL_CATEGORIES: SkillCategory[] = [
   {
     title: 'Languages',
-    hue: '220',
     tagClass: 'lang',
+    glowColor: 'blue',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path
@@ -26,8 +27,8 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   },
   {
     title: 'Frontend',
-    hue: '200',
     tagClass: 'fe',
+    glowColor: 'purple',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path
@@ -41,8 +42,8 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   },
   {
     title: 'Backend',
-    hue: '120',
     tagClass: 'be',
+    glowColor: 'green',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path
@@ -56,8 +57,8 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   },
   {
     title: 'Databases',
-    hue: '30',
     tagClass: 'db',
+    glowColor: 'orange',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path
@@ -71,8 +72,8 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   },
   {
     title: 'AI & NLP',
-    hue: '0',
     tagClass: 'ai',
+    glowColor: 'red',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path
@@ -93,8 +94,8 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   },
   {
     title: 'Tools & Others',
-    hue: '280',
     tagClass: 'tools',
+    glowColor: 'purple',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path
@@ -116,7 +117,12 @@ export default function Skills() {
         <h2 className="section-title">Technical Toolkit</h2>
         <div className="skills-grid">
           {SKILL_CATEGORIES.map(cat => (
-            <div key={cat.title} className="skill-card glow-card" data-glow-hue={cat.hue}>
+            <GlowCard
+              key={cat.title}
+              customSize
+              glowColor={cat.glowColor}
+              className="gap-4 skill-card"
+            >
               <div className="skill-card-icon">{cat.icon}</div>
               <h3 className="skill-card-title">{cat.title}</h3>
               <div className="skill-tags">
@@ -126,7 +132,7 @@ export default function Skills() {
                   </span>
                 ))}
               </div>
-            </div>
+            </GlowCard>
           ))}
         </div>
       </div>
