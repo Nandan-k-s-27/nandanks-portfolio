@@ -1,5 +1,6 @@
 import { useTypewriter } from '../hooks/useTypewriter';
 import { GitHubIcon, LinkedInIcon } from './Icons';
+import HeroCanvas from './HeroCanvas';
 
 const ROLES = [
   'Full-Stack Developer',
@@ -15,8 +16,7 @@ export default function Hero() {
     <section className="hero" id="home">
       <div className="hero-bg">
         <div className="hero-grid" />
-        <div className="blob blob-1" />
-        <div className="blob blob-2" />
+        <HeroCanvas />
         <div className="hero-vignette" />
       </div>
 
