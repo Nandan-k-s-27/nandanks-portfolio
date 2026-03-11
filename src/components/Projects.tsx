@@ -219,7 +219,8 @@ export default function Projects() {
                       key={link.url}
                       href={link.url}
                       target="_blank"
-                      rel="noopener"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.name} ${link.label}`}
                       className={`proj-link ${link.type === 'live' ? 'proj-live' : 'proj-github'}`}
                     >
                       {link.type === 'live' ? <ExternalLinkIcon /> : <GitHubIcon />}

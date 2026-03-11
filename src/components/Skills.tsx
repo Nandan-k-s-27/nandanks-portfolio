@@ -15,7 +15,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     tagClass: 'lang',
     glowColor: 'blue',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -30,7 +30,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     tagClass: 'fe',
     glowColor: 'purple',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -45,7 +45,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     tagClass: 'be',
     glowColor: 'green',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -60,7 +60,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     tagClass: 'db',
     glowColor: 'orange',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -75,7 +75,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     tagClass: 'ai',
     glowColor: 'red',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -97,7 +97,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     tagClass: 'tools',
     glowColor: 'purple',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
