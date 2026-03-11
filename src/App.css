@@ -11,7 +11,6 @@
   inset: calc(var(--border-size) * -1);
   border: var(--border-size) solid transparent;
   border-radius: calc(var(--radius) * 1px);
-  background-attachment: fixed;
   background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -349,23 +348,13 @@ ul { list-style: none; }
 }
 
 .project-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 2rem;
-  display: flex; flex-direction: column; gap: .9rem;
   transition: all var(--transition);
   position: relative;
 }
-.project-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: var(--shadow); }
+.project-card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
 .project-card.featured { border-color: rgba(99,102,241,.35); }
 
-/* GlowingEffect React component — overflow needed for shadow */
-.glowing-card { overflow: visible; }
 
-/* Keep project card content above the absolute GlowingEffect layers */
-.glowing-card > * { position: relative; z-index: 1; }
-.glowing-card > .pointer-events-none { z-index: 0; }
 
 .project-top { display: flex; align-items: center; justify-content: space-between; }
 

@@ -45,8 +45,8 @@ const GlowingEffect = memo(
           if (!element) return;
 
           const { left, top, width, height } = element.getBoundingClientRect();
-          const mouseX = e?.x ?? lastPosition.current.x;
-          const mouseY = e?.y ?? lastPosition.current.y;
+          const mouseX = e ? ('clientX' in e ? (e as any).clientX : e.x) : lastPosition.current.x;
+          const mouseY = e ? ('clientY' in e ? (e as any).clientY : e.y) : lastPosition.current.y;
 
           if (e) {
             lastPosition.current = { x: mouseX, y: mouseY };
@@ -81,7 +81,9 @@ const GlowingEffect = memo(
               Math.PI +
             90;
 
-          const angleDiff = ((targetAngle - currentAngle + 180) % 360) - 180;
+          let rawDiff = (targetAngle - currentAngle) % 360;
+          rawDiff = (rawDiff + 360) % 360; // Ensure positive remainder
+          const angleDiff = rawDiff > 180 ? rawDiff - 360 : rawDiff;
           const newAngle = currentAngle + angleDiff;
 
           animate(currentAngle, newAngle, {
@@ -103,7 +105,7 @@ const GlowingEffect = memo(
       const handlePointerMove = (e: PointerEvent) => handleMove(e);
 
       window.addEventListener("scroll", handleScroll, { passive: true });
-      document.body.addEventListener("pointermove", handlePointerMove, {
+      window.addEventListener("pointermove", handlePointerMove, {
         passive: true,
       });
 
@@ -112,7 +114,7 @@ const GlowingEffect = memo(
           cancelAnimationFrame(animationFrameRef.current);
         }
         window.removeEventListener("scroll", handleScroll);
-        document.body.removeEventListener("pointermove", handlePointerMove);
+        window.removeEventListener("pointermove", handlePointerMove);
       };
     }, [handleMove, disabled]);
 

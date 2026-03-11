@@ -180,7 +180,8 @@ export default function Projects() {
           {PROJECTS.map(project => (
             <article
               key={project.name}
-              className={`project-card glowing-card${project.featured ? ' featured' : ''}`}
+              className={`relative h-full list-none rounded-[1.25rem] border-[0.75px] border-[var(--border)] p-2 md:rounded-[1.5rem] md:p-3 project-card glowing-card${project.featured ? ' featured' : ''}`}
+              style={{ padding: '0.5rem', background: 'transparent', transition: 'transform 0.25s ease' }}
             >
               <GlowingEffect
                 spread={40}
@@ -190,40 +191,42 @@ export default function Projects() {
                 inactiveZone={0.01}
                 borderWidth={3}
               />
-              <div className="project-top">
-                <div className="project-icon-wrap">{project.icon}</div>
-                {project.featured && (
-                  <span className="project-badge featured-badge">Featured</span>
-                )}
-              </div>
-              <div className="project-label">{project.label}</div>
-              <h3 className="project-name">{project.name}</h3>
-              <p className="project-desc">{project.description}</p>
-              <ul className="project-highlights">
-                {project.highlights.map(h => (
-                  <li key={h}>{h}</li>
-                ))}
-              </ul>
-              <div className="project-stack">
-                {project.stack.map(s => (
-                  <span key={s} className="stack-tag">
-                    {s}
-                  </span>
-                ))}
-              </div>
-              <div className="project-links">
-                {project.links.map(link => (
-                  <a
-                    key={link.url}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener"
-                    className={`proj-link ${link.type === 'live' ? 'proj-live' : 'proj-github'}`}
-                  >
-                    {link.type === 'live' ? <ExternalLinkIcon /> : <GitHubIcon />}
-                    {link.label}
-                  </a>
-                ))}
+              <div className="relative flex h-full flex-col gap-5 overflow-hidden rounded-xl border-[0.75px] border-[var(--border)] bg-[var(--bg-card)] p-6 shadow-sm shadow-[0_4px_32px_rgba(0,0,0,.45)] transition-all hover:bg-[var(--bg-card-hover)] md:p-8" style={{ zIndex: 1 }}>
+                <div className="project-top">
+                  <div className="project-icon-wrap">{project.icon}</div>
+                  {project.featured && (
+                    <span className="project-badge featured-badge">Featured</span>
+                  )}
+                </div>
+                <div className="project-label">{project.label}</div>
+                <h3 className="project-name">{project.name}</h3>
+                <p className="project-desc">{project.description}</p>
+                <ul className="project-highlights">
+                  {project.highlights.map(h => (
+                    <li key={h}>{h}</li>
+                  ))}
+                </ul>
+                <div className="project-stack">
+                  {project.stack.map(s => (
+                    <span key={s} className="stack-tag">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+                <div className="project-links mt-auto">
+                  {project.links.map(link => (
+                    <a
+                      key={link.url}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener"
+                      className={`proj-link ${link.type === 'live' ? 'proj-live' : 'proj-github'}`}
+                    >
+                      {link.type === 'live' ? <ExternalLinkIcon /> : <GitHubIcon />}
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
               </div>
             </article>
           ))}
