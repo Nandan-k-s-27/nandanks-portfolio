@@ -64,7 +64,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
       '--spread': spread,
       '--radius': '14',
       '--border': '3',
-      '--backdrop': 'hsl(0 0% 60% / 0.12)',
+      '--backdrop': 'var(--spotlight-backdrop)',
       '--backup-border': 'var(--backdrop)',
       '--size': '200',
       '--outer': '1',
@@ -74,13 +74,14 @@ const GlowCard: React.FC<GlowCardProps> = ({
       backgroundImage: `radial-gradient(
         var(--spotlight-size) var(--spotlight-size) at
         calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
-        hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 70) * 1%) / var(--bg-spot-opacity, 0.1)),
+        hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--spotlight-glow, 70) * 1%) / var(--bg-spot-opacity, 0.1)),
         transparent
       )`,
       backgroundColor: 'var(--backdrop, transparent)',
       backgroundSize: 'calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)))',
       backgroundPosition: '50% 50%',
       border: 'var(--border-size) solid var(--backup-border)',
+      boxShadow: 'var(--shadow-spotlight)',
       position: 'relative',
       touchAction: 'none',
     };
@@ -111,7 +112,6 @@ const GlowCard: React.FC<GlowCardProps> = ({
           ${layoutClasses}
           rounded-2xl
           relative
-          shadow-[0_1rem_2rem_-1rem_black]
           p-6
           backdrop-blur-[5px]
           ${className}

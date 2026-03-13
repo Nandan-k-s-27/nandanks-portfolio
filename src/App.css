@@ -71,6 +71,11 @@
   --text-muted:   #64748b;
   --border:       rgba(99,102,241,.15);
   --border-hover: rgba(99,102,241,.4);
+  /* Theming fallbacks for Spotlight Card */
+  --spotlight-backdrop: hsl(0 0% 60% / 0.12);
+  --shadow-spotlight: 0 1rem 2rem -1rem black;
+  --spotlight-glow: 70;
+
   --ff-sans:      'Inter', system-ui, sans-serif;
   --ff-mono:      'Fira Code', monospace;
   --nav-h:        68px;
@@ -79,6 +84,29 @@
   --shadow:       0 4px 32px rgba(0,0,0,.45);
   --shadow-card:  0 2px 20px rgba(0,0,0,.35);
   --transition:   .25s ease;
+}
+
+[data-theme="light"] {
+  --bg-primary:   #f8fafc;  /* slate-50 */
+  --bg-secondary: #f1f5f9;  /* slate-100 */
+  --bg-card:      #ffffff;
+  --bg-card-hover:#f8fafc;
+  --accent:       #4f46e5;  /* slightly deeper indigo for contrast */
+  --primary:      #4f46e5;
+  --accent-2:     #7c3aed;  /* deeper violet */
+  --accent-glow:  rgba(79,70,229,.2);
+  --text-primary: #0f172a;  /* slate-900 */
+  --text-sec:     #334155;  /* slate-700 */
+  --text-muted:   #64748b;  /* slate-500 */
+  --border:       rgba(0,0,0,.08);
+  --border-hover: rgba(79,70,229,.3);
+  /* Light mode fallbacks for Spotlight Card */
+  --spotlight-backdrop: hsl(0 0% 100% / 0.5);
+  --shadow-spotlight: 0 1rem 2rem -1rem rgba(0,0,0,0.1);
+  --spotlight-glow: 40; /* Lower lightness so the colored glow stands out on white */
+  
+  --shadow:       0 4px 32px rgba(0,0,0,.08);
+  --shadow-card:  0 2px 20px rgba(0,0,0,.06);
 }
 
 html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }

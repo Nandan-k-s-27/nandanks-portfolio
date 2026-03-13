@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Home, User, Code2, Layers, Mail } from 'lucide-react';
+import { Home, User, Code2, Layers, Mail, Sun, Moon } from 'lucide-react';
 import { LimelightNav, type NavItem } from '@/components/ui/limelight-nav';
+import { useTheme } from '@/components/ThemeProvider';
 
 const SECTIONS = ['home', 'about', 'skills', 'projects', 'contact'] as const;
 type SectionId = (typeof SECTIONS)[number];
@@ -16,6 +17,7 @@ const NAV_ITEMS_BASE: { id: SectionId; icon: React.ReactElement; label: string }
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSectionId, setActiveSectionId] = useState<SectionId>('home');
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,9 +64,19 @@ export default function Navbar() {
         <div className="nav-container">
           <a className="nav-logo" href="#home">Nandan K S</a>
 
-          {/* Desktop nav — LimelightNav in header */}
-          <div className="hidden sm:block">
-            <LimelightNav {...limelightShared} />
+          <div className="flex items-center gap-4">
+            {/* Desktop nav — LimelightNav in header */}
+            <div className="hidden sm:block">
+              <LimelightNav {...limelightShared} />
+            </div>
+            
+            <button
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="p-2 rounded-full bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text-sec)] hover:text-[var(--accent)] hover:border-[var(--border-hover)] transition-all flex items-center justify-center"
+              aria-label="Toggle Theme"
+            >
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
           </div>
         </div>
       </header>
