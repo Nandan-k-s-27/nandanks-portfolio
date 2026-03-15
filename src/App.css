@@ -123,6 +123,21 @@
   --btn-glass:    rgba(0, 0, 0, .04);
 }
 
+/* ═══════════════════════════════════════════════════
+   VIEW TRANSITION (THEME TOGGLE)
+════════════════════════════════════════════════════ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2;
+}
+
 html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
 
 body {

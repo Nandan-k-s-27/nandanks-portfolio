@@ -58,6 +58,43 @@ export default function Navbar() {
     className: 'border-[var(--border)] !bg-[var(--bg-card)]',
   };
 
+  const handleThemeToggle = (e: React.MouseEvent) => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+
+    // Fallback for browsers that don't support View Transitions
+    if (!document.startViewTransition) {
+      setTheme(nextTheme);
+      return;
+    }
+
+    const x = e.clientX;
+    const y = e.clientY;
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    const transition = document.startViewTransition(() => {
+      setTheme(nextTheme);
+    });
+
+    transition.ready.then(() => {
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`,
+          ],
+        },
+        {
+          duration: 500,
+          easing: "ease-in-out",
+          pseudoElement: "::view-transition-new(root)",
+        }
+      );
+    });
+  };
+
   return (
     <>
       <header className={`navbar${scrolled ? ' scrolled' : ''}`} id="navbar">
@@ -71,7 +108,7 @@ export default function Navbar() {
             </div>
             
             <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              onClick={handleThemeToggle}
               className="p-2 rounded-full bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text-sec)] hover:text-[var(--accent)] hover:border-[var(--border-hover)] transition-all flex items-center justify-center"
               aria-label="Toggle Theme"
             >
