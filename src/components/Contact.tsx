@@ -1,4 +1,4 @@
-import { GitHubIcon, LinkedInIcon, ExternalLinkIcon } from './Icons';
+import { GitHubIcon, LinkedInIcon, EmailIcon, ExternalLinkIcon } from './Icons';
 
 export default function Contact() {
   return (
@@ -14,6 +14,19 @@ export default function Contact() {
               always open!
             </p>
             <div className="contact-cards">
+              <a
+                href="mailto:nandanks016@gmail.com"
+                className="contact-card"
+              >
+                <div className="contact-card-icon email">
+                  <EmailIcon />
+                </div>
+                <div className="contact-card-body">
+                  <span className="contact-card-label">Email</span>
+                  <span className="contact-card-value">nandanks016@gmail.com</span>
+                </div>
+                <ExternalLinkIcon className="contact-arrow" />
+              </a>
               <a
                 href="https://www.linkedin.com/in/nandanks2003"
                 target="_blank"

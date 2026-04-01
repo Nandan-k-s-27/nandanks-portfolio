@@ -1,5 +1,5 @@
 import { useTypewriter } from '../hooks/useTypewriter';
-import { GitHubIcon, LinkedInIcon } from './Icons';
+import { GitHubIcon, LinkedInIcon, EmailIcon } from './Icons';
 
 const ROLES = [
   'Full-Stack Developer',
@@ -59,6 +59,13 @@ export default function Hero() {
             aria-label="LinkedIn"
           >
             <LinkedInIcon />
+          </a>
+          <a
+            href="mailto:nandanks016@gmail.com"
+            className="social-icon"
+            aria-label="Email"
+          >
+            <EmailIcon />
           </a>
         </div>
       </div>
