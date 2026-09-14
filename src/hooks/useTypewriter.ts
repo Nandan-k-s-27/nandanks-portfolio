@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export function useTypewriter(
   words: string[],
@@ -7,6 +7,8 @@ export function useTypewriter(
   pauseMs = 1800,
 ): string {
   const [display, setDisplay] = useState('');
+  const wordsRef = useRef(words);
+  wordsRef.current = words;
 
   useEffect(() => {
     let idx = 0;
@@ -15,7 +17,10 @@ export function useTypewriter(
     let timeoutId: ReturnType<typeof setTimeout>;
 
     function tick() {
-      const current = words[idx];
+      const currentWords = wordsRef.current;
+      if (!currentWords || currentWords.length === 0) return;
+      
+      const current = currentWords[idx % currentWords.length];
       if (!deleting) {
         charIdx++;
         setDisplay(current.slice(0, charIdx));
@@ -29,7 +34,7 @@ export function useTypewriter(
         setDisplay(current.slice(0, charIdx));
         if (charIdx === 0) {
           deleting = false;
-          idx = (idx + 1) % words.length;
+          idx = (idx + 1) % currentWords.length;
         }
       }
       timeoutId = setTimeout(tick, deleting ? deleteSpeed : typeSpeed);
@@ -37,7 +42,7 @@ export function useTypewriter(
 
     tick();
     return () => clearTimeout(timeoutId);
-  }, [words, typeSpeed, deleteSpeed, pauseMs]);
+  }, [typeSpeed, deleteSpeed, pauseMs]);
 
   return display;
 }

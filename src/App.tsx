@@ -2,8 +2,10 @@ import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Experience from './components/Experience';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
+import PublicationAndEducation from './components/PublicationAndEducation';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -11,7 +13,7 @@ export default function App() {
   useEffect(() => {
     /* ── Reveal on scroll ── */
     const revealEls = document.querySelectorAll(
-      '.skill-card, .project-card, .about-grid, .contact-wrapper, .contact-tagline',
+      '.skill-card, .project-card, .about-grid, .contact-wrapper, .contact-tagline, .timeline-item, .publication-card, .education-card',
     );
     revealEls.forEach(el => el.classList.add('reveal'));
 
@@ -24,7 +26,7 @@ export default function App() {
           }
         });
       },
-      { threshold: 0.1 },
+      { threshold: 0.08 },
     );
     revealEls.forEach(el => observer.observe(el));
 
@@ -34,14 +36,18 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] selection:bg-[var(--accent)] selection:text-white">
       <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
+      <main>
+        <Hero />
+        <About />
+        <Experience />
+        <Skills />
+        <Projects />
+        <PublicationAndEducation />
+        <Contact />
+      </main>
       <Footer />
-    </>
+    </div>
   );
 }
