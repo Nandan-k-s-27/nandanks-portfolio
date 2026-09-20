@@ -1,5 +1,6 @@
 import { ArrowRight, Briefcase, GraduationCap, BookOpen, Trophy } from 'lucide-react';
 import { GitHubIcon, LinkedInIcon, EmailIcon } from './Icons';
+import CountUp from './CountUp';
 
 export default function Hero() {
   return (
@@ -35,7 +36,9 @@ export default function Hero() {
                 <Briefcase size={14} className="text-[var(--accent)]" />
                 <span className="stat-label">Industry</span>
               </div>
-              <div className="stat-value">2 Internships</div>
+              <div className="stat-value">
+                <CountUp end={2} duration={900} delay={400} /> Internships
+              </div>
               <div className="stat-meta">Bandhan &bull; UnicornReady</div>
             </div>
 
@@ -44,7 +47,9 @@ export default function Hero() {
                 <GraduationCap size={14} className="text-[var(--accent)]" />
                 <span className="stat-label">Academics</span>
               </div>
-              <div className="stat-value">8.88 CGPA</div>
+              <div className="stat-value">
+                <CountUp end={8.88} decimals={2} duration={1300} delay={400} /> CGPA
+              </div>
               <div className="stat-meta">CMR Institute of Tech</div>
             </div>
 
@@ -53,7 +58,9 @@ export default function Hero() {
                 <BookOpen size={14} className="text-[var(--accent)]" />
                 <span className="stat-label">Research</span>
               </div>
-              <div className="stat-value">1 Publication</div>
+              <div className="stat-value">
+                <CountUp end={1} duration={800} delay={400} /> Publication
+              </div>
               <div className="stat-meta">IJARETY (Impact: 8.152)</div>
             </div>
 
@@ -62,7 +69,9 @@ export default function Hero() {
                 <Trophy size={14} className="text-[var(--accent)]" />
                 <span className="stat-label">Hackathons</span>
               </div>
-              <div className="stat-value">1st Place</div>
+              <div className="stat-value">
+                <CountUp end={1} suffix="st" duration={800} delay={400} /> Place
+              </div>
               <div className="stat-meta">Full-Stack Development</div>
             </div>
           </div>
