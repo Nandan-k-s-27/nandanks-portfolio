@@ -321,12 +321,24 @@ ul {
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
   margin-bottom: 2.25rem;
+  transition: border-color 0.25s ease, box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-stats-strip:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-card);
 }
 
 .stat-item {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stat-item:hover {
+  transform: translateY(-2px);
+}
+.stat-item:hover .stat-value {
+  color: var(--accent);
 }
 .stat-item + .stat-item {
   border-left: 1px solid var(--border);
@@ -338,6 +350,7 @@ ul {
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.02em;
+  transition: color 0.2s ease;
 }
 .stat-label {
   font-size: 0.75rem;
@@ -549,15 +562,22 @@ ul {
   display: flex;
   align-items: flex-start;
   gap: 0.85rem;
-  transition: border-color var(--transition);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.25s ease;
 }
 .pillar-card:hover {
   border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
 }
 .pillar-icon {
   color: var(--accent);
   margin-top: 0.15rem;
   flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pillar-card:hover .pillar-icon {
+  transform: scale(1.15);
 }
 
 /* ═══════════════════════════════════════════════════
@@ -595,6 +615,12 @@ ul {
   justify-content: center;
   box-shadow: var(--shadow-sm);
   z-index: 2;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, background-color 0.25s ease;
+}
+.timeline-item:hover .timeline-icon {
+  transform: scale(1.12);
+  border-color: var(--accent-border);
+  background: var(--accent-subtle);
 }
 
 .timeline-line {
@@ -611,11 +637,12 @@ ul {
   border-radius: var(--radius);
   padding: 1.75rem 2rem;
   box-shadow: var(--shadow-card);
-  transition: border-color var(--transition), box-shadow var(--transition);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.timeline-content:hover {
+.timeline-item:hover .timeline-content {
   border-color: var(--border-hover);
   box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
 }
 
 .timeline-badge {
@@ -646,14 +673,14 @@ ul {
   border-radius: var(--radius);
   padding: 1.75rem;
   box-shadow: var(--shadow-card);
-  transition: all var(--transition);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
 }
 .skill-card:hover {
   border-color: var(--border-hover);
   box-shadow: var(--shadow-hover);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
 }
 
 .skill-card-icon {
@@ -666,6 +693,12 @@ ul {
   align-items: center;
   justify-content: center;
   color: var(--accent);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, background-color 0.25s ease;
+}
+.skill-card:hover .skill-card-icon {
+  border-color: var(--accent-border);
+  transform: scale(1.08);
+  background: var(--accent-subtle);
 }
 
 .skill-tags {
@@ -684,11 +717,15 @@ ul {
   background: var(--badge-bg);
   color: var(--badge-text);
   border: 1px solid var(--badge-border);
-  transition: all var(--transition);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
 }
 .skill-tag:hover {
-  border-color: var(--border-hover);
-  color: var(--text-primary);
+  border-color: var(--accent-border);
+  background: var(--accent-subtle);
+  color: var(--accent);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.08);
 }
 
 /* ═══════════════════════════════════════════════════
@@ -709,12 +746,17 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  transition: all var(--transition);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .project-card:hover {
   border-color: var(--border-hover);
   box-shadow: var(--shadow-hover);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+}
+.project-card:hover .project-icon-wrap {
+  border-color: var(--accent-border);
+  transform: scale(1.08);
+  background: var(--accent-subtle);
 }
 
 .project-top {
@@ -733,6 +775,7 @@ ul {
   align-items: center;
   justify-content: center;
   color: var(--accent);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, background-color 0.25s ease;
 }
 
 .project-badge {
@@ -812,6 +855,14 @@ ul {
   background: var(--badge-bg);
   color: var(--badge-text);
   border: 1px solid var(--badge-border);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  user-select: none;
+}
+.stack-tag:hover {
+  border-color: var(--accent-border);
+  background: var(--accent-subtle);
+  color: var(--accent);
+  transform: translateY(-2px) scale(1.05);
 }
 
 .project-links {
@@ -876,11 +927,12 @@ ul {
   border-radius: var(--radius);
   padding: clamp(1.75rem, 3vw, 2.5rem);
   box-shadow: var(--shadow-card);
-  transition: border-color var(--transition), box-shadow var(--transition);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .publication-card:hover {
   border-color: var(--border-hover);
   box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
 }
 
 .publication-title {
@@ -902,12 +954,12 @@ ul {
   border-radius: var(--radius);
   padding: 1.5rem;
   box-shadow: var(--shadow-card);
-  transition: all var(--transition);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .education-card:hover {
   border-color: var(--border-hover);
   box-shadow: var(--shadow-hover);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .cgpa-pill {
