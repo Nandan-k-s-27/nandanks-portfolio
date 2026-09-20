@@ -34,7 +34,9 @@ export default function PublicationAndEducation() {
                 </div>
 
                 <h3 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] leading-snug">
-                  HearTogether: A WebRTC-Based Real-Time Audio Streaming Platform for Synchronous Multi-User Audio Distribution
+                  <span className="publication-title">
+                    HearTogether: A WebRTC-Based Real-Time Audio Streaming Platform for Synchronous Multi-User Audio Distribution
+                  </span>
                 </h3>
 
                 <p className="text-[var(--text-sec)] text-sm md:text-base leading-relaxed">

@@ -126,6 +126,23 @@ a {
   text-decoration: none;
 }
 
+/* Josh W. Comeau Signature Animated Underline */
+.animated-link {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  padding-bottom: 2px;
+  transition: background-size 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+}
+.animated-link:hover {
+  background-size: 100% 2px;
+  color: var(--accent);
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -211,20 +228,40 @@ ul {
 }
 
 .nav-link {
+  position: relative;
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--text-sec);
   padding: 0.4rem 0.75rem;
   border-radius: var(--radius-sm);
-  transition: color var(--transition), background-color var(--transition);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 0.75rem;
+  right: 0.75rem;
+  height: 2px;
+  background-color: var(--accent);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .nav-link:hover {
   color: var(--text-primary);
   background-color: var(--btn-glass);
 }
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
 .nav-link.active {
   color: var(--accent);
   font-weight: 600;
+}
+.nav-link.active::after {
+  transform: scaleX(1);
 }
 
 /* ═══════════════════════════════════════════════════
@@ -680,6 +717,16 @@ ul {
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.02em;
+  display: inline-block;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  padding-bottom: 2px;
+  transition: background-size 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project-card:hover .project-name {
+  background-size: 100% 2px;
 }
 
 .project-desc {
@@ -780,6 +827,19 @@ ul {
 .publication-card:hover {
   border-color: var(--border-hover);
   box-shadow: var(--shadow-hover);
+}
+
+.publication-title {
+  display: inline;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  padding-bottom: 2px;
+  transition: background-size 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.publication-card:hover .publication-title {
+  background-size: 100% 2px;
 }
 
 .education-card {

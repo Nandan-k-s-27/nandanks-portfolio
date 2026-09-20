@@ -17,17 +17,17 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-wrap justify-center items-center gap-4 text-xs font-medium text-[var(--text-sec)]">
-            <a href="#about" className="hover:text-[var(--text-primary)] transition-colors">About</a>
+            <a href="#about" className="animated-link">About</a>
             <span className="text-[var(--text-muted)]">&bull;</span>
-            <a href="#experience" className="hover:text-[var(--text-primary)] transition-colors">Experience</a>
+            <a href="#experience" className="animated-link">Experience</a>
             <span className="text-[var(--text-muted)]">&bull;</span>
-            <a href="#skills" className="hover:text-[var(--text-primary)] transition-colors">Skills</a>
+            <a href="#skills" className="animated-link">Skills</a>
             <span className="text-[var(--text-muted)]">&bull;</span>
-            <a href="#projects" className="hover:text-[var(--text-primary)] transition-colors">Projects</a>
+            <a href="#projects" className="animated-link">Projects</a>
             <span className="text-[var(--text-muted)]">&bull;</span>
-            <a href="#academics" className="hover:text-[var(--text-primary)] transition-colors">Academics</a>
+            <a href="#academics" className="animated-link">Academics</a>
             <span className="text-[var(--text-muted)]">&bull;</span>
-            <a href="#contact" className="hover:text-[var(--text-primary)] transition-colors">Contact</a>
+            <a href="#contact" className="animated-link">Contact</a>
           </div>
 
           <div className="flex items-center gap-2">

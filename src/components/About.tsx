@@ -34,7 +34,7 @@ export default function About() {
 
             <p>
               I am also a <strong>published researcher</strong> in real-time audio distribution, having authored a paper
-              in <em>IJARETY</em> (Impact Factor: 8.152) presenting a WebRTC mesh architecture for synchronous multi-user audio delivery without specialized hardware.
+              in <a href="#academics" className="animated-link font-medium text-[var(--text-primary)]"><em>IJARETY</em> (Impact Factor: 8.152)</a> presenting a WebRTC mesh architecture for synchronous multi-user audio delivery without specialized hardware.
             </p>
 
             {/* Architecture Highlights Grid */}

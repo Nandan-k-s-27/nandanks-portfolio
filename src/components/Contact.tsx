@@ -46,7 +46,7 @@ export default function Contact() {
                   <span className="contact-card-label">Primary Email</span>
                   <a
                     href={`mailto:${email}`}
-                    className="contact-card-value hover:text-[var(--accent)] transition-colors"
+                    className="contact-card-value animated-link"
                   >
                     {email}
                   </a>
