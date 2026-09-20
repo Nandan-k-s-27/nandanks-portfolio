@@ -51,10 +51,20 @@ export default function Contact() {
                     {email}
                   </a>
                 </div>
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5 relative">
+                  {copied && (
+                    <div className="copy-tooltip" role="status" aria-live="polite">
+                      <Check size={12} className="text-emerald-500 shrink-0" />
+                      <span>Copied to clipboard!</span>
+                    </div>
+                  )}
                   <button
                     onClick={copyEmailToClipboard}
-                    className="p-2 rounded-[var(--radius-sm)] bg-[var(--bg-secondary)] border border-[var(--border)] text-[var(--text-sec)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] transition-all"
+                    className={`p-2 rounded-[var(--radius-sm)] bg-[var(--bg-secondary)] border text-[var(--text-sec)] hover:text-[var(--text-primary)] transition-all ${
+                      copied
+                        ? 'copy-btn-success border-emerald-500/60 text-emerald-600 dark:text-emerald-400'
+                        : 'border-[var(--border)] hover:border-[var(--border-hover)] active:scale-90'
+                    }`}
                     title="Copy Email Address"
                     aria-label="Copy Email"
                   >
@@ -62,11 +72,11 @@ export default function Contact() {
                   </button>
                   <a
                     href={`mailto:${email}`}
-                    className="p-2 rounded-[var(--radius-sm)] bg-[var(--bg-secondary)] border border-[var(--border)] text-[var(--text-sec)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] transition-all"
+                    className="p-2 rounded-[var(--radius-sm)] bg-[var(--bg-secondary)] border border-[var(--border)] text-[var(--text-sec)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] active:scale-90 transition-all group"
                     title="Send Email"
                     aria-label="Send Email"
                   >
-                    <Send size={15} />
+                    <Send size={15} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
                 </div>
               </div>

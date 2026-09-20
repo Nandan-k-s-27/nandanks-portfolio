@@ -16,6 +16,7 @@ type SectionId = (typeof NAV_LINKS)[number]['id'] | 'home';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState<SectionId>('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -23,6 +24,11 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        setScrollProgress(Math.min(100, Math.max(0, (window.scrollY / totalScroll) * 100)));
+      }
 
       const sectionIds: SectionId[] = ['contact', 'academics', 'projects', 'skills', 'experience', 'about', 'home'];
       const scrollPos = window.scrollY + 140;
@@ -97,6 +103,12 @@ export default function Navbar() {
 
   return (
     <header className={`navbar${scrolled ? ' scrolled' : ''}`} id="navbar">
+      {/* Scroll Reading Progress Bar */}
+      <div
+        className="navbar-progress-bar"
+        style={{ width: `${scrollProgress}%` }}
+        aria-hidden="true"
+      />
       <div className="nav-container">
         {/* Wordmark */}
         <a
