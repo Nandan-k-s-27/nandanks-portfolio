@@ -292,6 +292,7 @@ ul {
   border: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
   margin-bottom: 1.5rem;
+  animation: heroEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
 }
 
 .hero-headline {
@@ -301,6 +302,7 @@ ul {
   letter-spacing: -0.03em;
   color: var(--text-primary);
   margin-bottom: 1.25rem;
+  animation: heroEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
 }
 
 .hero-bio {
@@ -309,6 +311,7 @@ ul {
   line-height: 1.68;
   max-width: 720px;
   margin-bottom: 2rem;
+  animation: heroEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
 }
 
 .hero-stats-strip {
@@ -322,6 +325,7 @@ ul {
   box-shadow: var(--shadow-sm);
   margin-bottom: 2.25rem;
   transition: border-color 0.25s ease, box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: heroEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
 }
 .hero-stats-strip:hover {
   border-color: var(--border-hover);
@@ -370,12 +374,25 @@ ul {
   flex-wrap: wrap;
   gap: 0.85rem;
   margin-bottom: 2rem;
+  animation: heroEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
 }
 
 .hero-socials {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  animation: heroEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.52s both;
+}
+
+@keyframes heroEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .social-btn {
@@ -1083,12 +1100,45 @@ ul {
 ════════════════════════════════════════════════════ */
 .reveal {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Staggered Grid Reveal Delays */
+.skills-grid .skill-card:nth-child(1) { transition-delay: 0.05s; }
+.skills-grid .skill-card:nth-child(2) { transition-delay: 0.15s; }
+.skills-grid .skill-card:nth-child(3) { transition-delay: 0.25s; }
+
+.projects-grid .project-card:nth-child(1) { transition-delay: 0.05s; }
+.projects-grid .project-card:nth-child(2) { transition-delay: 0.18s; }
+
+.experience-timeline .timeline-item:nth-child(1) { transition-delay: 0.05s; }
+.experience-timeline .timeline-item:nth-child(2) { transition-delay: 0.2s; }
+
+.contact-cards .contact-card:nth-child(1) { transition-delay: 0.05s; }
+.contact-cards .contact-card:nth-child(2) { transition-delay: 0.12s; }
+.contact-cards .contact-card:nth-child(3) { transition-delay: 0.19s; }
+.contact-cards .contact-card:nth-child(4) { transition-delay: 0.26s; }
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .hero-status-pill,
+  .hero-headline,
+  .hero-bio,
+  .hero-stats-strip,
+  .hero-actions,
+  .hero-socials,
+  .reveal {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* ═══════════════════════════════════════════════════

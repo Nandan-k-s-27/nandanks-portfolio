@@ -13,7 +13,7 @@ export default function App() {
   useEffect(() => {
     /* ── Reveal on scroll ── */
     const revealEls = document.querySelectorAll(
-      '.skill-card, .project-card, .profile-card, .timeline-item, .publication-card, .education-card, .contact-wrapper',
+      '.section-title, .section-label, .skill-card, .project-card, .profile-card, .timeline-item, .publication-card, .education-card, .contact-wrapper, .pillar-card',
     );
     revealEls.forEach(el => el.classList.add('reveal'));
 
@@ -26,7 +26,7 @@ export default function App() {
           }
         });
       },
-      { threshold: 0.08 },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' },
     );
     revealEls.forEach(el => observer.observe(el));
 
