@@ -144,7 +144,7 @@ export default function Projects() {
           <div className="flex items-center gap-1 p-1 rounded-[var(--radius-sm)] bg-[var(--bg-secondary)] border border-[var(--border)] self-start md:self-auto">
             <button
               onClick={() => setActiveFilter('all')}
-              className={`px-3 py-1.5 rounded-[var(--radius-sm)] text-xs font-semibold transition-all ${
+              className={`px-3 py-1.5 rounded-[var(--radius-sm)] text-xs font-semibold transition-all active:scale-95 ${
                 activeFilter === 'all'
                   ? 'bg-[var(--bg-card)] text-[var(--text-primary)] shadow-sm'
                   : 'text-[var(--text-sec)] hover:text-[var(--text-primary)]'
@@ -154,7 +154,7 @@ export default function Projects() {
             </button>
             <button
               onClick={() => setActiveFilter('realtime')}
-              className={`px-3 py-1.5 rounded-[var(--radius-sm)] text-xs font-semibold transition-all ${
+              className={`px-3 py-1.5 rounded-[var(--radius-sm)] text-xs font-semibold transition-all active:scale-95 ${
                 activeFilter === 'realtime'
                   ? 'bg-[var(--bg-card)] text-[var(--text-primary)] shadow-sm'
                   : 'text-[var(--text-sec)] hover:text-[var(--text-primary)]'
@@ -164,7 +164,7 @@ export default function Projects() {
             </button>
             <button
               onClick={() => setActiveFilter('ai')}
-              className={`px-3 py-1.5 rounded-[var(--radius-sm)] text-xs font-semibold transition-all ${
+              className={`px-3 py-1.5 rounded-[var(--radius-sm)] text-xs font-semibold transition-all active:scale-95 ${
                 activeFilter === 'ai'
                   ? 'bg-[var(--bg-card)] text-[var(--text-primary)] shadow-sm'
                   : 'text-[var(--text-sec)] hover:text-[var(--text-primary)]'

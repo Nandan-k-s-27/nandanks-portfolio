@@ -52,7 +52,7 @@ export default function PublicationAndEducation() {
                     rel="noopener noreferrer"
                     className="btn btn-primary text-xs md:text-sm"
                   >
-                    <ExternalLink size={14} />
+                    <ExternalLink size={14} className="icon-diagonal" />
                     <span>View Live System</span>
                   </a>
                   <a
