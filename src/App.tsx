@@ -13,7 +13,7 @@ export default function App() {
   useEffect(() => {
     /* ── Reveal on scroll ── */
     const revealEls = document.querySelectorAll(
-      '.skill-card, .project-card, .about-grid, .contact-wrapper, .contact-tagline, .timeline-item, .publication-card, .education-card',
+      '.skill-card, .project-card, .profile-card, .timeline-item, .publication-card, .education-card, .contact-wrapper',
     );
     revealEls.forEach(el => el.classList.add('reveal'));
 

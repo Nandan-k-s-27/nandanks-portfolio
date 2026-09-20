@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { GitHubIcon, LinkedInIcon, EmailIcon, ExternalLinkIcon } from './Icons';
-import { Copy, Check, Send, Globe, MapPin, Terminal } from 'lucide-react';
+import { Copy, Check, Send, Globe, MapPin } from 'lucide-react';
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
@@ -15,59 +15,58 @@ export default function Contact() {
           setTimeout(() => setCopied(false), 2500);
         })
         .catch(() => {
-          // Fallback if permission blocked
           setCopied(false);
         });
     }
   };
 
   return (
-    <section className="section section-alt" id="contact">
+    <section className="section" id="contact">
       <div className="container">
-        <div className="section-label">06. Contact</div>
+        <div className="section-label">06 — Contact</div>
         <h2 className="section-title !mb-4">Get In Touch</h2>
         <p className="text-[var(--text-sec)] text-base max-w-2xl mb-12">
-          Whether you have an open software engineering role, a technical collaboration inquiry,
-          or just want to connect — my inbox is always open.
+          Whether you have an open software engineering role, a technical inquiry, or would like to discuss distributed systems and real-time architectures — feel free to reach out.
         </p>
 
         <div className="contact-wrapper">
+          {/* Left Column: Direct Links */}
           <div className="contact-left">
-            <p className="contact-intro">
-              I am actively seeking software development and cloud engineering opportunities. Feel free to reach out directly via email or connect on LinkedIn and GitHub.
+            <p className="text-[var(--text-sec)] text-base mb-6 leading-relaxed">
+              I am actively considering software development and cloud engineering positions. Connect directly via email or view my verified profiles:
             </p>
 
             <div className="contact-cards">
               {/* Email Card with Copy Option */}
-              <div className="contact-card group">
-                <div className="contact-card-icon email">
-                  <EmailIcon />
+              <div className="contact-card">
+                <div className="contact-card-icon">
+                  <EmailIcon className="w-5 h-5" />
                 </div>
                 <div className="contact-card-body">
                   <span className="contact-card-label">Primary Email</span>
                   <a
                     href={`mailto:${email}`}
-                    className="contact-card-value hover:text-[var(--accent)] transition-colors font-mono"
+                    className="contact-card-value hover:text-[var(--accent)] transition-colors"
                   >
                     {email}
                   </a>
                 </div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1.5">
                   <button
                     onClick={copyEmailToClipboard}
-                    className="p-2 rounded-lg bg-[var(--btn-glass)] border border-[var(--border)] text-[var(--text-sec)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all"
+                    className="p-2 rounded-[var(--radius-sm)] bg-[var(--bg-secondary)] border border-[var(--border)] text-[var(--text-sec)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] transition-all"
                     title="Copy Email Address"
                     aria-label="Copy Email"
                   >
-                    {copied ? <Check size={16} className="text-emerald-400" /> : <Copy size={16} />}
+                    {copied ? <Check size={15} className="text-emerald-500" /> : <Copy size={15} />}
                   </button>
                   <a
                     href={`mailto:${email}`}
-                    className="p-2 rounded-lg bg-[var(--btn-glass)] border border-[var(--border)] text-[var(--text-sec)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all"
+                    className="p-2 rounded-[var(--radius-sm)] bg-[var(--bg-secondary)] border border-[var(--border)] text-[var(--text-sec)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] transition-all"
                     title="Send Email"
                     aria-label="Send Email"
                   >
-                    <Send size={16} />
+                    <Send size={15} />
                   </a>
                 </div>
               </div>
@@ -79,14 +78,14 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="contact-card"
               >
-                <div className="contact-card-icon linkedin">
-                  <LinkedInIcon />
+                <div className="contact-card-icon">
+                  <LinkedInIcon className="w-5 h-5" />
                 </div>
                 <div className="contact-card-body">
-                  <span className="contact-card-label">LinkedIn Profile</span>
-                  <span className="contact-card-value font-mono">linkedin.com/in/nandanks2003</span>
+                  <span className="contact-card-label">LinkedIn</span>
+                  <span className="contact-card-value">linkedin.com/in/nandanks2003</span>
                 </div>
-                <ExternalLinkIcon className="contact-arrow" />
+                <ExternalLinkIcon className="text-[var(--text-muted)] w-4 h-4" />
               </a>
 
               {/* GitHub Card */}
@@ -96,63 +95,65 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="contact-card"
               >
-                <div className="contact-card-icon github">
-                  <GitHubIcon />
+                <div className="contact-card-icon">
+                  <GitHubIcon className="w-5 h-5" />
                 </div>
                 <div className="contact-card-body">
-                  <span className="contact-card-label">GitHub Repository</span>
-                  <span className="contact-card-value font-mono">github.com/Nandan-k-s-27</span>
+                  <span className="contact-card-label">GitHub</span>
+                  <span className="contact-card-value">github.com/Nandan-k-s-27</span>
                 </div>
-                <ExternalLinkIcon className="contact-arrow" />
+                <ExternalLinkIcon className="text-[var(--text-muted)] w-4 h-4" />
               </a>
 
-              {/* Web Portfolio Card */}
+              {/* Personal Domain Card */}
               <a
                 href="https://nandanks.me"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-card"
               >
-                <div className="contact-card-icon" style={{ background: 'rgba(99,102,241,0.15)', color: 'var(--accent)' }}>
-                  <Globe size={22} />
+                <div className="contact-card-icon">
+                  <Globe size={20} />
                 </div>
                 <div className="contact-card-body">
                   <span className="contact-card-label">Personal Domain</span>
-                  <span className="contact-card-value font-mono">nandanks.me</span>
+                  <span className="contact-card-value">nandanks.me</span>
                 </div>
-                <ExternalLinkIcon className="contact-arrow" />
+                <ExternalLinkIcon className="text-[var(--text-muted)] w-4 h-4" />
               </a>
             </div>
           </div>
 
+          {/* Right Column: Statement & Callout */}
           <div className="contact-right">
-            <div className="contact-tagline">
-              <div className="flex items-center justify-center gap-2 text-xs font-mono font-bold tracking-wider text-[var(--accent)] uppercase mb-2">
-                <Terminal size={14} />
-                <span>Console Log</span>
+            <div className="contact-callout">
+              <div className="space-y-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-[var(--accent)]">
+                  Availability &amp; Location
+                </span>
+                <p className="text-base text-[var(--text-sec)] leading-relaxed">
+                  "Focused on building maintainable architecture, low-latency streaming pipelines, and clean user-facing systems."
+                </p>
               </div>
-              <p className="contact-quote">
-                "Driven by scalable architecture, clean code, and solving challenging engineering problems."
-              </p>
-              
-              <div className="pt-4 border-t border-[var(--border)]/50 space-y-3">
-                <div className="contact-availability">
-                  <span className="availability-dot" />
-                  <span>Available for Full-Time Roles &amp; Internships</span>
+
+              <div className="pt-4 border-t border-[var(--border)] space-y-3">
+                <div className="flex items-center gap-2 text-sm text-[var(--text-primary)] font-medium">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0" />
+                  <span>Available for Full-Time Software Engineering Roles</span>
                 </div>
-                <div className="flex items-center justify-center gap-1.5 text-xs text-[var(--text-muted)] font-mono">
-                  <MapPin size={13} className="text-[var(--accent)]" />
-                  <span>Based in Bengaluru, India &bull; Open to Remote</span>
+                <div className="flex items-center gap-2 text-xs text-[var(--text-muted)]">
+                  <MapPin size={14} className="text-[var(--accent)] shrink-0" />
+                  <span>Based in Bengaluru, India &bull; Open to On-site, Hybrid &amp; Remote</span>
                 </div>
               </div>
 
               <div className="pt-2">
                 <a
-                  href={`mailto:${email}?subject=Opportunity%20Discussion%20-%20Nandan%20K%20S`}
-                  className="btn btn-primary w-full justify-center"
+                  href={`mailto:${email}?subject=Software%20Engineering%20Opportunity%20-%20Nandan%20K%20S`}
+                  className="btn btn-primary w-full"
                 >
                   <Send size={15} />
-                  Start a Conversation
+                  <span>Start a Conversation</span>
                 </a>
               </div>
             </div>

@@ -1,145 +1,119 @@
-import { useTypewriter } from '../hooks/useTypewriter';
+import { ArrowRight, Briefcase, GraduationCap, BookOpen, Trophy } from 'lucide-react';
 import { GitHubIcon, LinkedInIcon, EmailIcon } from './Icons';
-import { ArrowRight, Sparkles, Terminal, Code2, Briefcase, GraduationCap } from 'lucide-react';
-
-const ROLES = [
-  'Full-Stack Developer',
-  'Cloud Data Engineering Intern',
-  'AI & Real-Time Systems Builder',
-  'WebRTC & Distributed Architecture',
-  'MCA Student @ CMR IT (8.88 CGPA)',
-];
 
 export default function Hero() {
-  const roleText = useTypewriter(ROLES);
-
   return (
     <section className="hero" id="home">
-      <div className="hero-bg">
-        <div className="hero-grid" />
-        <div className="blob blob-1" />
-        <div className="blob blob-2" />
-        <div className="hero-vignette" />
-      </div>
-
-      <div className="hero-content">
-        {/* ── System Status Pill ── */}
-        <div className="hero-status-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[var(--border)] mb-6 shadow-sm">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-          <span className="w-2 h-2 rounded-full bg-emerald-400 -ml-4" />
-          <span className="font-mono text-xs text-[var(--text-sec)] font-medium tracking-wide">
-            SYSTEM ONLINE &bull; BENGALURU, INDIA &bull; OPEN TO ROLES
-          </span>
-        </div>
-
-        <p className="hero-greeting flex items-center gap-2">
-          <Terminal size={14} className="text-[var(--accent)]" />
-          Hello, world! I'm
-        </p>
-
-        <h1 className="hero-name">Nandan K S</h1>
-
-        <div className="hero-roles">
-          <span className="role-text font-mono text-[var(--accent)]">{roleText}</span>
-          <span className="cursor" aria-hidden="true">|</span>
-        </div>
-
-        <p className="hero-sub">
-          Software Developer building production-grade web applications with{' '}
-          <strong>React, Node.js,</strong> and <strong>Python</strong>. Hands-on expertise in{' '}
-          <strong>real-time systems (WebRTC, Socket.IO, Redis)</strong>, cloud data engineering on{' '}
-          <strong>Azure Data Factory &amp; Databricks</strong>, and voice-driven AI architectures.
-        </p>
-
-        {/* ── Quick Engineering Stats ── */}
-        <div className="hero-stats-grid grid grid-cols-2 sm:grid-cols-4 gap-3 my-8">
-          <div className="stat-card p-3 rounded-xl border border-[var(--border)]">
-            <div className="flex items-center gap-2 text-xs font-mono text-[var(--text-muted)] mb-1">
-              <Briefcase size={13} className="text-[var(--accent)]" />
-              <span>Experience</span>
-            </div>
-            <div className="text-xl font-bold font-mono text-[var(--text-primary)]">2 Internships</div>
-            <div className="text-[11px] text-[var(--text-sec)]">Bandhan &bull; UnicornReady</div>
+      <div className="container">
+        <div className="hero-content">
+          {/* Status Pill */}
+          <div className="hero-status-pill">
+            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            <span className="text-xs font-medium text-[var(--text-sec)]">
+              Bengaluru, India &bull; Open to Software Engineering Roles
+            </span>
           </div>
 
-          <div className="stat-card p-3 rounded-xl border border-[var(--border)]">
-            <div className="flex items-center gap-2 text-xs font-mono text-[var(--text-muted)] mb-1">
-              <GraduationCap size={13} className="text-[var(--accent)]" />
-              <span>MCA Academic</span>
+          {/* Main Headline */}
+          <h1 className="hero-headline">
+            Building resilient distributed systems, real-time architectures, and modern web applications.
+          </h1>
+
+          {/* Subtitle / Bio */}
+          <p className="hero-bio">
+            I'm <strong className="text-[var(--text-primary)]">Nandan K S</strong>, a software developer and Master of Computer Applications student at{' '}
+            <strong className="text-[var(--text-primary)]">CMR Institute of Technology, Bengaluru</strong> (8.88 CGPA). Hands-on experience building production web platforms with{' '}
+            <strong className="text-[var(--text-primary)]">React, TypeScript, Node.js</strong>, low-latency streaming with{' '}
+            <strong className="text-[var(--text-primary)]">WebRTC &amp; Redis</strong>, and cloud data pipelines on{' '}
+            <strong className="text-[var(--text-primary)]">Azure Data Factory &amp; Databricks</strong>.
+          </p>
+
+          {/* Engineering Metrics Strip */}
+          <div className="hero-stats-strip">
+            <div className="stat-item">
+              <div className="flex items-center gap-1.5 text-[var(--text-muted)] mb-1">
+                <Briefcase size={14} className="text-[var(--accent)]" />
+                <span className="stat-label">Industry</span>
+              </div>
+              <div className="stat-value">2 Internships</div>
+              <div className="stat-meta">Bandhan &bull; UnicornReady</div>
             </div>
-            <div className="text-xl font-bold font-mono text-[var(--text-primary)]">8.88 CGPA</div>
-            <div className="text-[11px] text-[var(--text-sec)]">CMR Institute of Tech</div>
+
+            <div className="stat-item">
+              <div className="flex items-center gap-1.5 text-[var(--text-muted)] mb-1">
+                <GraduationCap size={14} className="text-[var(--accent)]" />
+                <span className="stat-label">Academics</span>
+              </div>
+              <div className="stat-value">8.88 CGPA</div>
+              <div className="stat-meta">CMR Institute of Tech</div>
+            </div>
+
+            <div className="stat-item">
+              <div className="flex items-center gap-1.5 text-[var(--text-muted)] mb-1">
+                <BookOpen size={14} className="text-[var(--accent)]" />
+                <span className="stat-label">Research</span>
+              </div>
+              <div className="stat-value">1 Publication</div>
+              <div className="stat-meta">IJARETY (Impact: 8.152)</div>
+            </div>
+
+            <div className="stat-item">
+              <div className="flex items-center gap-1.5 text-[var(--text-muted)] mb-1">
+                <Trophy size={14} className="text-[var(--accent)]" />
+                <span className="stat-label">Hackathons</span>
+              </div>
+              <div className="stat-value">1st Place</div>
+              <div className="stat-meta">Full-Stack Development</div>
+            </div>
           </div>
 
-          <div className="stat-card p-3 rounded-xl border border-[var(--border)]">
-            <div className="flex items-center gap-2 text-xs font-mono text-[var(--text-muted)] mb-1">
-              <Sparkles size={13} className="text-[var(--accent)]" />
-              <span>Research</span>
+          {/* CTA Actions & Social Links */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="hero-actions mb-0">
+              <a href="#projects" className="btn btn-primary">
+                <span>View Projects</span>
+                <ArrowRight size={15} />
+              </a>
+              <a href="#experience" className="btn btn-outline">
+                Industry Experience
+              </a>
+              <a href="#contact" className="btn btn-outline">
+                Contact Me
+              </a>
             </div>
-            <div className="text-xl font-bold font-mono text-[var(--text-primary)]">1 Paper</div>
-            <div className="text-[11px] text-[var(--text-sec)]">IJARETY (IF: 8.152)</div>
-          </div>
 
-          <div className="stat-card p-3 rounded-xl border border-[var(--border)]">
-            <div className="flex items-center gap-2 text-xs font-mono text-[var(--text-muted)] mb-1">
-              <Code2 size={13} className="text-[var(--accent)]" />
-              <span>Hackathons</span>
+            <div className="hero-socials sm:pl-3 sm:border-l sm:border-[var(--border)]">
+              <a
+                href="https://github.com/Nandan-k-s-27"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-btn"
+                aria-label="GitHub Profile"
+                title="GitHub"
+              >
+                <GitHubIcon className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/nandanks2003"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-btn"
+                aria-label="LinkedIn Profile"
+                title="LinkedIn"
+              >
+                <LinkedInIcon className="w-4 h-4" />
+              </a>
+              <a
+                href="mailto:nandanks016@gmail.com"
+                className="social-btn"
+                aria-label="Send Email"
+                title="Email"
+              >
+                <EmailIcon className="w-4 h-4" />
+              </a>
             </div>
-            <div className="text-xl font-bold font-mono text-[var(--text-primary)]">1st Place</div>
-            <div className="text-[11px] text-[var(--text-sec)]">Full-Stack E-Commerce</div>
           </div>
         </div>
-
-        {/* ── CTA Buttons ── */}
-        <div className="hero-cta flex items-center flex-wrap gap-3 mb-8">
-          <a href="#projects" className="btn btn-primary">
-            Explore Projects
-            <ArrowRight size={15} />
-          </a>
-          <a href="#experience" className="btn btn-outline">
-            View Experience
-          </a>
-          <a href="#contact" className="btn btn-outline">
-            Get In Touch
-          </a>
-        </div>
-
-        {/* ── Social Profiles (Safe, Non-Sensitive) ── */}
-        <div className="hero-socials flex items-center gap-3">
-          <a
-            href="https://github.com/Nandan-k-s-27"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            aria-label="GitHub Profile"
-            title="GitHub"
-          >
-            <GitHubIcon />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/nandanks2003"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            aria-label="LinkedIn Profile"
-            title="LinkedIn"
-          >
-            <LinkedInIcon />
-          </a>
-          <a
-            href="mailto:nandanks016@gmail.com"
-            className="social-icon"
-            aria-label="Send Email"
-            title="Email"
-          >
-            <EmailIcon />
-          </a>
-        </div>
-      </div>
-
-      <div className="scroll-indicator">
-        <div className="scroll-line" />
-        <span>Scroll Down</span>
       </div>
     </section>
   );

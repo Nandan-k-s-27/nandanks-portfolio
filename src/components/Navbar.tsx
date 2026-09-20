@@ -1,64 +1,51 @@
 import { useState, useEffect } from 'react';
-import { Home, User, Briefcase, Code2, Layers, GraduationCap, Mail, Sun, Moon } from 'lucide-react';
-import { LimelightNav, type NavItem } from '@/components/ui/limelight-nav';
+import { Menu, X, Sun, Moon, ArrowUpRight } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
 
-const SECTIONS = ['home', 'about', 'experience', 'skills', 'projects', 'academics', 'contact'] as const;
-type SectionId = (typeof SECTIONS)[number];
+const NAV_LINKS = [
+  { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'academics', label: 'Academics' },
+  { id: 'contact', label: 'Contact' },
+] as const;
 
-const NAV_ITEMS_BASE: { id: SectionId; icon: React.ReactElement; label: string }[] = [
-  { id: 'home',       icon: <Home size={18} />,          label: 'Home'       },
-  { id: 'about',      icon: <User size={18} />,          label: 'About'      },
-  { id: 'experience', icon: <Briefcase size={18} />,     label: 'Experience' },
-  { id: 'skills',     icon: <Code2 size={18} />,         label: 'Skills'     },
-  { id: 'projects',   icon: <Layers size={18} />,        label: 'Projects'   },
-  { id: 'academics',  icon: <GraduationCap size={18} />, label: 'Academics'  },
-  { id: 'contact',    icon: <Mail size={18} />,          label: 'Contact'    },
-];
+type SectionId = (typeof NAV_LINKS)[number]['id'] | 'home';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [activeSectionId, setActiveSectionId] = useState<SectionId>('home');
+  const [activeSection, setActiveSection] = useState<SectionId>('home');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
-      const sections = document.querySelectorAll<HTMLElement>('section[id]');
-      let current: SectionId = 'home';
-      sections.forEach(sec => {
-        if (window.scrollY >= sec.offsetTop - 140) {
-          const id = sec.id as SectionId;
-          if ((SECTIONS as readonly string[]).includes(id)) current = id;
+
+      const sectionIds: SectionId[] = ['contact', 'academics', 'projects', 'skills', 'experience', 'about', 'home'];
+      const scrollPos = window.scrollY + 140;
+
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveSection(id);
+          break;
         }
-      });
-      setActiveSectionId(current);
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id: SectionId) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const activeIndex = Math.max(0, SECTIONS.indexOf(activeSectionId));
-
-  const navItems: NavItem[] = NAV_ITEMS_BASE.map(({ id, icon, label }) => ({
-    id,
-    icon,
-    label,
-    onClick: () => scrollToSection(id),
-  }));
-
-  const limelightShared = {
-    items: navItems,
-    activeIndex,
-    limelightClassName: 'bg-[var(--accent)] shadow-[0_50px_15px_var(--accent)]',
-    iconClassName: 'text-[var(--text-primary)]',
-    className: 'border-[var(--border)] !bg-[var(--bg-card)] !h-12 sm:!h-14',
-    iconContainerClassName: '!px-2.5 sm:!px-4 !py-2',
+  const scrollTo = (id: string) => {
+    setMobileMenuOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleThemeToggle = (e: React.MouseEvent) => {
@@ -89,8 +76,8 @@ export default function Navbar() {
           ],
         },
         {
-          duration: 500,
-          easing: 'ease-in-out',
+          duration: 400,
+          easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
           pseudoElement: '::view-transition-new(root)',
         }
       );
@@ -98,47 +85,97 @@ export default function Navbar() {
   };
 
   return (
-    <>
-      <header className={`navbar${scrolled ? ' scrolled' : ''}`} id="navbar">
-        <div className="nav-container">
-          <a className="nav-logo flex items-center gap-2 group" href="#home">
-            <span className="font-mono text-sm px-2 py-0.5 rounded bg-[var(--btn-glass)] border border-[var(--border)] text-[var(--accent)]">
-              &lt;/&gt;
-            </span>
-            <span className="font-bold tracking-tight">NANDAN.DEV</span>
-          </a>
+    <header className={`navbar${scrolled ? ' scrolled' : ''}`} id="navbar">
+      <div className="nav-container">
+        {/* Wordmark */}
+        <a
+          href="#home"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollTo('home');
+          }}
+          className="nav-logo group"
+        >
+          <span className="font-bold text-[var(--text-primary)] tracking-tight">Nandan K S</span>
+          <span className="hidden sm:inline-block text-xs font-normal text-[var(--text-muted)] border-l border-[var(--border)] pl-2.5">
+            Software Engineer
+          </span>
+        </a>
 
-          <div className="flex items-center gap-3">
-            {/* Desktop Navigation */}
-            <div className="hidden lg:block">
-              <LimelightNav {...limelightShared} />
-            </div>
+        {/* Desktop Navigation Links */}
+        <nav className="hidden md:flex items-center gap-1" aria-label="Main Navigation">
+          {NAV_LINKS.map((link) => {
+            const isActive = activeSection === link.id;
+            return (
+              <button
+                key={link.id}
+                onClick={() => scrollTo(link.id)}
+                className={`nav-link ${isActive ? 'active' : ''}`}
+              >
+                {link.label}
+              </button>
+            );
+          })}
+        </nav>
 
-            {/* Quick Link to Contact on Medium screens */}
-            <a
-              href="#contact"
-              className="hidden md:inline-flex lg:hidden text-xs font-mono font-medium px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--btn-glass)] text-[var(--text-sec)] hover:text-[var(--text-primary)]"
+        {/* Action Buttons */}
+        <div className="flex items-center gap-2">
+          {/* Quick CTA */}
+          <button
+            onClick={() => scrollTo('contact')}
+            className="hidden lg:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1.5 rounded-[var(--radius-sm)] border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-secondary)] transition-all"
+          >
+            <span>Get In Touch</span>
+            <ArrowUpRight size={14} className="text-[var(--text-muted)]" />
+          </button>
+
+          {/* Theme Toggle */}
+          <button
+            onClick={handleThemeToggle}
+            className="p-2 rounded-[var(--radius-sm)] bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text-sec)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] transition-all flex items-center justify-center shadow-sm"
+            aria-label="Toggle theme"
+            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          >
+            {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
+          </button>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 rounded-[var(--radius-sm)] bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text-sec)] hover:text-[var(--text-primary)] transition-all"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Navigation Drawer */}
+      {mobileMenuOpen && (
+        <div className="md:hidden border-b border-[var(--border)] bg-[var(--bg-card)] px-5 py-4 shadow-lg animate-in slide-in-from-top-2 duration-200">
+          <nav className="flex flex-col gap-1.5">
+            {NAV_LINKS.map((link) => (
+              <button
+                key={link.id}
+                onClick={() => scrollTo(link.id)}
+                className={`text-left px-3 py-2.5 rounded-[var(--radius-sm)] text-sm font-medium transition-colors ${
+                  activeSection === link.id
+                    ? 'bg-[var(--accent-subtle)] text-[var(--accent)] font-semibold'
+                    : 'text-[var(--text-sec)] hover:bg-[var(--btn-glass)] hover:text-[var(--text-primary)]'
+                }`}
+              >
+                {link.label}
+              </button>
+            ))}
+            <button
+              onClick={() => scrollTo('contact')}
+              className="mt-2 text-center btn btn-primary text-xs py-2.5"
             >
               Get In Touch
-            </a>
-
-            {/* Theme Toggle */}
-            <button
-              onClick={handleThemeToggle}
-              className="p-2.5 rounded-xl bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text-sec)] hover:text-[var(--accent)] hover:border-[var(--border-hover)] transition-all flex items-center justify-center shadow-sm"
-              aria-label="Toggle Theme"
-              title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             </button>
-          </div>
+          </nav>
         </div>
-      </header>
-
-      {/* Mobile/Tablet bottom floating nav */}
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[200] block lg:hidden max-w-[95vw]">
-        <LimelightNav {...limelightShared} />
-      </div>
-    </>
+      )}
+    </header>
   );
 }
