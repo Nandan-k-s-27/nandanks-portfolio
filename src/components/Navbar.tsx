@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { flushSync } from 'react-dom';
 import { Menu, X, Sun, Moon, ArrowUpRight } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -63,25 +64,35 @@ export default function Navbar() {
       Math.max(y, window.innerHeight - y)
     );
 
-    const transition = document.startViewTransition(() => {
-      setTheme(nextTheme);
-    });
+    try {
+      const transition = document.startViewTransition(() => {
+        flushSync(() => {
+          setTheme(nextTheme);
+        });
+      });
 
-    transition.ready.then(() => {
-      document.documentElement.animate(
-        {
-          clipPath: [
-            `circle(0px at ${x}px ${y}px)`,
-            `circle(${endRadius}px at ${x}px ${y}px)`,
-          ],
-        },
-        {
-          duration: 400,
-          easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
-          pseudoElement: '::view-transition-new(root)',
-        }
-      );
-    });
+      transition.ready
+        .then(() => {
+          document.documentElement.animate(
+            {
+              clipPath: [
+                `circle(0px at ${x}px ${y}px)`,
+                `circle(${endRadius}px at ${x}px ${y}px)`,
+              ],
+            },
+            {
+              duration: 400,
+              easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+              pseudoElement: '::view-transition-new(root)',
+            }
+          );
+        })
+        .catch(() => {
+          // Animation fallback: state has already been safely committed
+        });
+    } catch {
+      setTheme(nextTheme);
+    }
   };
 
   return (

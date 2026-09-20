@@ -14,7 +14,7 @@ interface ThemeProviderState {
 }
 
 const initialState: ThemeProviderState = {
-  theme: 'dark',
+  theme: 'light',
   setTheme: () => null,
 };
 
@@ -22,34 +22,49 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
 export function ThemeProvider({
   children,
-  defaultTheme = 'dark',
+  defaultTheme = 'light',
   storageKey = 'portfolio-theme',
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
-  );
+  const [theme, setThemeState] = useState<Theme>(() => {
+    try {
+      const stored = localStorage.getItem(storageKey);
+      if (stored === 'dark' || stored === 'light') return stored;
+    } catch {
+      // localStorage disabled or not accessible
+    }
+    return defaultTheme;
+  });
 
   useEffect(() => {
     const root = window.document.documentElement;
-
-    if (theme === 'light') {
-      root.setAttribute('data-theme', 'light');
+    root.setAttribute('data-theme', theme);
+    if (theme === 'dark') {
+      root.classList.add('dark');
+      root.classList.remove('light');
     } else {
-      root.removeAttribute('data-theme');
+      root.classList.add('light');
+      root.classList.remove('dark');
+    }
+
+    // Update meta theme-color for mobile browser chrome
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', theme === 'dark' ? '#121211' : '#fafaf8');
     }
   }, [theme]);
 
-  const value = {
-    theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme);
-      setTheme(theme);
-    },
+  const setTheme = (newTheme: Theme) => {
+    try {
+      localStorage.setItem(storageKey, newTheme);
+    } catch {
+      // storage unavailable / quota exceeded
+    }
+    setThemeState(newTheme);
   };
 
   return (
-    <ThemeProviderContext.Provider {...props} value={value}>
+    <ThemeProviderContext.Provider {...props} value={{ theme, setTheme }}>
       {children}
     </ThemeProviderContext.Provider>
   );

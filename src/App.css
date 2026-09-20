@@ -11,7 +11,9 @@
   padding: 0;
 }
 
-:root {
+:root,
+[data-theme="light"],
+.light {
   --ff-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --ff-heading: 'Plus Jakarta Sans', var(--ff-sans);
   --ff-mono: 'JetBrains Mono', monospace;
@@ -51,7 +53,8 @@
   --shadow-nav:  0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
-[data-theme="dark"] {
+[data-theme="dark"],
+.dark {
   --bg-primary:    #121211;
   --bg-secondary:  #181816;
   --bg-card:       #1c1c1a;
@@ -802,7 +805,8 @@ ul {
   color: #047857;
   border: 1px solid #a7f3d0;
 }
-[data-theme="dark"] .cgpa-pill {
+[data-theme="dark"] .cgpa-pill,
+.dark .cgpa-pill {
   background: rgba(16, 185, 129, 0.12);
   color: #34d399;
   border-color: rgba(16, 185, 129, 0.28);
