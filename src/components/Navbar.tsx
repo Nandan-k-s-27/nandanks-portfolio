@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { flushSync } from 'react-dom';
 import { Menu, X, Sun, Moon, ArrowUpRight } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
@@ -20,6 +20,11 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState<SectionId>('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+
+  // Sliding pill refs
+  const navGroupRef = useRef<HTMLElement>(null);
+  const buttonRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
+  const [pillStyle, setPillStyle] = useState<{ left: number; width: number } | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,6 +51,43 @@ export default function Navbar() {
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Update pill position whenever activeSection changes
+  useEffect(() => {
+    const activeId = NAV_LINKS.find(l => l.id === activeSection)?.id;
+    if (!activeId) {
+      setPillStyle(null);
+      return;
+    }
+    const btn = buttonRefs.current.get(activeId);
+    const nav = navGroupRef.current;
+    if (!btn || !nav) {
+      setPillStyle(null);
+      return;
+    }
+    const navRect = nav.getBoundingClientRect();
+    const btnRect = btn.getBoundingClientRect();
+    setPillStyle({
+      left: btnRect.left - navRect.left,
+      width: btnRect.width,
+    });
+  }, [activeSection]);
+
+  // Recalculate on resize
+  useEffect(() => {
+    const recalc = () => {
+      const activeId = NAV_LINKS.find(l => l.id === activeSection)?.id;
+      if (!activeId) return;
+      const btn = buttonRefs.current.get(activeId);
+      const nav = navGroupRef.current;
+      if (!btn || !nav) return;
+      const navRect = nav.getBoundingClientRect();
+      const btnRect = btn.getBoundingClientRect();
+      setPillStyle({ left: btnRect.left - navRect.left, width: btnRect.width });
+    };
+    window.addEventListener('resize', recalc, { passive: true });
+    return () => window.removeEventListener('resize', recalc);
+  }, [activeSection]);
 
   const scrollTo = (id: string) => {
     setMobileMenuOpen(false);
@@ -125,15 +167,31 @@ export default function Navbar() {
           </span>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-1" aria-label="Main Navigation">
+        {/* Desktop Navigation Links with Sliding Pill */}
+        <nav className="hidden md:flex items-center gap-1 relative" aria-label="Main Navigation" ref={navGroupRef}>
+          {/* Spring-animated sliding background pill */}
+          {pillStyle && (
+            <span
+              className="nav-active-pill"
+              aria-hidden="true"
+              style={{
+                left: pillStyle.left,
+                width: pillStyle.width,
+              }}
+            />
+          )}
+
           {NAV_LINKS.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <button
                 key={link.id}
+                ref={(el) => {
+                  if (el) buttonRefs.current.set(link.id, el);
+                  else buttonRefs.current.delete(link.id);
+                }}
                 onClick={() => scrollTo(link.id)}
-                className={`nav-link ${isActive ? 'active' : ''}`}
+                className={`nav-link${isActive ? ' active' : ''}`}
               >
                 {link.label}
               </button>
