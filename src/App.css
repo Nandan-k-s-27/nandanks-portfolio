@@ -868,12 +868,50 @@ ul {
 .project-card:hover {
   border-color: var(--border-hover);
   box-shadow: var(--shadow-hover);
-  transform: translateY(-4px);
 }
 .project-card:hover .project-icon-wrap {
   border-color: var(--accent-border);
   transform: scale(1.08);
   background: var(--accent-subtle);
+}
+
+/* ── 3D Tilt Card with Specular Gloss ── */
+.tilt-card {
+  --gloss-x: 50%;
+  --gloss-y: 50%;
+  position: relative;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+.tilt-gloss {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  background: radial-gradient(
+    circle at var(--gloss-x) var(--gloss-y),
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(255, 255, 255, 0.04) 40%,
+    transparent 70%
+  );
+  transition: opacity 0.3s ease;
+}
+
+[data-theme="dark"] .tilt-gloss,
+.dark .tilt-gloss {
+  background: radial-gradient(
+    circle at var(--gloss-x) var(--gloss-y),
+    rgba(255, 255, 255, 0.09) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    transparent 70%
+  );
+}
+
+.tilt-card:hover .tilt-gloss {
+  opacity: 1;
 }
 
 .project-top {

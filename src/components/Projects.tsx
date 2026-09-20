@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from 'react';
 import { GitHubIcon, ExternalLinkIcon } from './Icons';
 import { Video, Radio, Mic, Youtube } from 'lucide-react';
+import TiltCard from './TiltCard';
 
 interface ProjectLink {
   type: 'live' | 'github';
@@ -177,7 +178,10 @@ export default function Projects() {
 
         <div className="projects-grid">
           {filteredProjects.map((project) => (
-            <article key={`${project.name}-${activeFilter}`} className="project-card animate-filter-in">
+            <TiltCard
+              key={`${project.name}-${activeFilter}`}
+              className="project-card animate-filter-in"
+            >
               <div className="project-top">
                 <div className="project-icon-wrap">{project.icon}</div>
                 {project.featured && (
@@ -223,7 +227,7 @@ export default function Projects() {
                   </a>
                 ))}
               </div>
-            </article>
+            </TiltCard>
           ))}
         </div>
       </div>
