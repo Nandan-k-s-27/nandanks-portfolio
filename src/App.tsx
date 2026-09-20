@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import InfiniteMarquee from './components/InfiniteMarquee';
 import About from './components/About';
 import Experience from './components/Experience';
 import Skills from './components/Skills';
@@ -41,6 +42,7 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <InfiniteMarquee />
         <About />
         <Experience />
         <Skills />

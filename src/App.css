@@ -627,6 +627,113 @@ ul {
   margin-bottom: 0.5rem;
 }
 
+/* ═══════════════════════════════════════════════════
+   INFINITE TECH STACK MARQUEE
+════════════════════════════════════════════════════ */
+.marquee-section {
+  position: relative;
+  overflow: hidden;
+  padding-block: 1.5rem;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  /* Fade masks on left & right edges */
+}
+
+.marquee-fade-left,
+.marquee-fade-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(60px, 8vw, 120px);
+  pointer-events: none;
+  z-index: 2;
+}
+.marquee-fade-left {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-secondary), transparent);
+}
+.marquee-fade-right {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-secondary), transparent);
+}
+
+.marquee-row {
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 0.75rem;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+
+.marquee-row--reverse .marquee-track {
+  animation-name: marqueeScrollReverse;
+  animation-duration: 32s;
+}
+
+/* Pause on hover */
+.marquee-section:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-sec);
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  cursor: default;
+  user-select: none;
+}
+
+.marquee-chip:hover {
+  color: var(--accent);
+  border-color: var(--accent-border);
+  background: var(--accent-subtle);
+}
+
+.marquee-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.55;
+  flex-shrink: 0;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marqueeScrollReverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* prefers-reduced-motion: stop scrolling, show static list */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+  }
+}
+
+
 .section-title {
   font-size: clamp(1.85rem, 3.2vw, 2.65rem);
   font-weight: 700;
