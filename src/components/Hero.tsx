@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { ArrowRight, Briefcase, GraduationCap, BookOpen, Trophy } from 'lucide-react';
 import { GitHubIcon, LinkedInIcon, EmailIcon } from './Icons';
 import CountUp from './CountUp';
+import Magnetic from './Magnetic';
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
@@ -105,47 +106,59 @@ export default function Hero() {
           {/* CTA Actions & Social Links */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <div className="hero-actions mb-0">
-              <a href="#projects" className="btn btn-primary">
-                <span>View Projects</span>
-                <ArrowRight size={15} />
-              </a>
-              <a href="#experience" className="btn btn-outline">
-                Industry Experience
-              </a>
-              <a href="#contact" className="btn btn-outline">
-                Contact Me
-              </a>
+              <Magnetic strength={0.28}>
+                <a href="#projects" className="btn btn-primary">
+                  <span>View Projects</span>
+                  <ArrowRight size={15} />
+                </a>
+              </Magnetic>
+              <Magnetic strength={0.28}>
+                <a href="#experience" className="btn btn-outline">
+                  Industry Experience
+                </a>
+              </Magnetic>
+              <Magnetic strength={0.28}>
+                <a href="#contact" className="btn btn-outline">
+                  Contact Me
+                </a>
+              </Magnetic>
             </div>
 
             <div className="hero-socials sm:pl-3 sm:border-l sm:border-[var(--border)]">
-              <a
-                href="https://github.com/Nandan-k-s-27"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-btn"
-                aria-label="GitHub Profile"
-                title="GitHub"
-              >
-                <GitHubIcon className="w-4 h-4" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/nandanks2003"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-btn"
-                aria-label="LinkedIn Profile"
-                title="LinkedIn"
-              >
-                <LinkedInIcon className="w-4 h-4" />
-              </a>
-              <a
-                href="mailto:nandanks016@gmail.com"
-                className="social-btn"
-                aria-label="Send Email"
-                title="Email"
-              >
-                <EmailIcon className="w-4 h-4" />
-              </a>
+              <Magnetic strength={0.4}>
+                <a
+                  href="https://github.com/Nandan-k-s-27"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-btn"
+                  aria-label="GitHub Profile"
+                  title="GitHub"
+                >
+                  <GitHubIcon className="w-4 h-4" />
+                </a>
+              </Magnetic>
+              <Magnetic strength={0.4}>
+                <a
+                  href="https://www.linkedin.com/in/nandanks2003"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-btn"
+                  aria-label="LinkedIn Profile"
+                  title="LinkedIn"
+                >
+                  <LinkedInIcon className="w-4 h-4" />
+                </a>
+              </Magnetic>
+              <Magnetic strength={0.4}>
+                <a
+                  href="mailto:nandanks016@gmail.com"
+                  className="social-btn"
+                  aria-label="Send Email"
+                  title="Email"
+                >
+                  <EmailIcon className="w-4 h-4" />
+                </a>
+              </Magnetic>
             </div>
           </div>
         </div>

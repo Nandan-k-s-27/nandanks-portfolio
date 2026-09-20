@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { flushSync } from 'react-dom';
 import { Menu, X, Sun, Moon, ArrowUpRight } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
+import Magnetic from '@/components/Magnetic';
 
 const NAV_LINKS = [
   { id: 'about', label: 'About' },
@@ -202,27 +203,31 @@ export default function Navbar() {
         {/* Action Buttons */}
         <div className="flex items-center gap-2">
           {/* Quick CTA */}
-          <button
-            onClick={() => scrollTo('contact')}
-            className="hidden lg:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1.5 rounded-[var(--radius-sm)] border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-secondary)] transition-all shadow-sm group active:scale-95"
-          >
-            <span>Get In Touch</span>
-            <ArrowUpRight size={14} className="text-[var(--text-muted)] group-hover:text-[var(--text-primary)] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </button>
+          <Magnetic strength={0.25}>
+            <button
+              onClick={() => scrollTo('contact')}
+              className="hidden lg:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1.5 rounded-[var(--radius-sm)] border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-secondary)] transition-all shadow-sm group active:scale-95"
+            >
+              <span>Get In Touch</span>
+              <ArrowUpRight size={14} className="text-[var(--text-muted)] group-hover:text-[var(--text-primary)] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </button>
+          </Magnetic>
 
           {/* Theme Toggle */}
-          <button
-            onClick={handleThemeToggle}
-            className="p-2 rounded-[var(--radius-sm)] bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text-sec)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] transition-all flex items-center justify-center shadow-sm active:scale-90"
-            aria-label="Toggle theme"
-            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-          >
-            {theme === 'dark' ? (
-              <Sun size={17} className="transition-transform duration-300 hover:rotate-45" />
-            ) : (
-              <Moon size={17} className="transition-transform duration-300 hover:-rotate-12" />
-            )}
-          </button>
+          <Magnetic strength={0.4}>
+            <button
+              onClick={handleThemeToggle}
+              className="p-2 rounded-[var(--radius-sm)] bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text-sec)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] transition-all flex items-center justify-center shadow-sm active:scale-90"
+              aria-label="Toggle theme"
+              title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            >
+              {theme === 'dark' ? (
+                <Sun size={17} className="transition-transform duration-300 hover:rotate-45" />
+              ) : (
+                <Moon size={17} className="transition-transform duration-300 hover:-rotate-12" />
+              )}
+            </button>
+          </Magnetic>
 
           {/* Mobile Menu Toggle */}
           <button
