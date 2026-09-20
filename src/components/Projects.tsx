@@ -177,7 +177,7 @@ export default function Projects() {
 
         <div className="projects-grid">
           {filteredProjects.map((project) => (
-            <article key={project.name} className="project-card">
+            <article key={`${project.name}-${activeFilter}`} className="project-card animate-filter-in">
               <div className="project-top">
                 <div className="project-icon-wrap">{project.icon}</div>
                 {project.featured && (

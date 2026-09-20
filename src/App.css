@@ -1258,6 +1258,79 @@ ul {
 }
 
 /* ═══════════════════════════════════════════════════
+   SCROLL TO TOP FLOATING BUTTON & FILTER TRANSITIONS
+════════════════════════════════════════════════════ */
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-sec);
+  box-shadow: var(--shadow-card);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(18px) scale(0.92);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease,
+              color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.scroll-to-top-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-to-top-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+  background: var(--bg-secondary);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.scroll-to-top-btn:active {
+  transform: translateY(0) scale(0.94);
+}
+
+.scroll-arrow-icon {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+}
+
+.scroll-to-top-btn:hover .scroll-arrow-icon {
+  transform: translateY(-3px);
+  color: var(--accent);
+}
+
+.animate-filter-in {
+  animation: filterCardIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes filterCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ═══════════════════════════════════════════════════
    RESPONSIVE QUERIES
 ════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
@@ -1307,5 +1380,13 @@ ul {
   }
   .timeline-content {
     padding: 1.25rem 1.25rem;
+  }
+  .scroll-to-top-btn {
+    bottom: 20px;
+    right: 20px;
+    padding: 0.6rem;
+  }
+  .scroll-to-top-text {
+    display: none;
   }
 }
