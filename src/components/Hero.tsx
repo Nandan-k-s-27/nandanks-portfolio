@@ -32,7 +32,10 @@ export default function Hero() {
         <div className="hero-content">
           {/* Status Pill */}
           <div className="hero-status-pill">
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            <span className="relative flex h-2 w-2 shrink-0">
+              <span className="status-beacon-pulse" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            </span>
             <span className="text-xs font-medium text-[var(--text-sec)]">
               Bengaluru, India &bull; Open to Software Engineering Roles
             </span>
@@ -146,6 +149,16 @@ export default function Hero() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Organic Curved Wave Transition into About Section */}
+      <div className="section-divider-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 64" fill="none" preserveAspectRatio="none" className="text-[var(--bg-secondary)]">
+          <path
+            d="M0,24 C240,56 480,8 720,32 C960,56 1200,16 1440,28 L1440,64 L0,64 Z"
+            fill="currentColor"
+          />
+        </svg>
       </div>
     </section>
   );

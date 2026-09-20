@@ -220,6 +220,16 @@ export default function PublicationAndEducation() {
           </div>
         </div>
       </div>
+
+      {/* Organic Curved Wave Transition into Contact Section */}
+      <div className="section-divider-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 64" fill="none" preserveAspectRatio="none" className="text-[var(--bg-primary)]">
+          <path
+            d="M0,24 C240,56 480,8 720,32 C960,56 1200,16 1440,28 L1440,64 L0,64 Z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
     </section>
   );
 }

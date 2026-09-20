@@ -148,7 +148,10 @@ export default function Contact() {
 
               <div className="pt-4 border-t border-[var(--border)] space-y-3">
                 <div className="flex items-center gap-2 text-sm text-[var(--text-primary)] font-medium">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0" />
+                  <span className="relative flex h-2.5 w-2.5 shrink-0">
+                    <span className="status-beacon-pulse" />
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                  </span>
                   <span>Available for Full-Time Software Engineering Roles</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-[var(--text-muted)]">

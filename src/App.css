@@ -281,13 +281,19 @@ ul {
 .hero {
   min-height: calc(100svh - var(--nav-h));
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
   position: relative;
-  padding-block: clamp(50px, 8vw, 90px);
+  padding-top: clamp(60px, 8vw, 100px);
+  padding-bottom: 0;
   background: var(--bg-primary);
   overflow: hidden;
   --mouse-x: 50%;
   --mouse-y: 35%;
+}
+
+.hero > .container {
+  margin-block: auto;
 }
 
 .hero-grid-pattern {
@@ -345,6 +351,27 @@ ul {
   box-shadow: var(--shadow-sm);
   margin-bottom: 1.5rem;
   animation: heroEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+
+/* Live Status Radar Beacon Pulse */
+.status-beacon-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background-color: #10b981;
+  opacity: 0.75;
+  animation: beaconPulse 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes beaconPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  70%, 100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
 }
 
 .hero-headline {
@@ -568,6 +595,29 @@ ul {
 }
 .section-alt {
   background: var(--bg-secondary);
+}
+
+#academics {
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Organic Curved Section Wave Divider */
+.section-divider-wave {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  pointer-events: none;
+  z-index: 2;
+  margin-top: auto;
+}
+
+.section-divider-wave svg {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: clamp(32px, 4.5vw, 60px);
 }
 
 .section-label {
@@ -1388,5 +1438,20 @@ ul {
   }
   .scroll-to-top-text {
     display: none;
+  }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .status-beacon-pulse {
+    animation: none !important;
   }
 }
