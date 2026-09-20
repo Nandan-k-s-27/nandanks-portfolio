@@ -1,10 +1,33 @@
+import { useEffect, useRef } from 'react';
 import { ArrowRight, Briefcase, GraduationCap, BookOpen, Trophy } from 'lucide-react';
 import { GitHubIcon, LinkedInIcon, EmailIcon } from './Icons';
 import CountUp from './CountUp';
 
 export default function Hero() {
+  const heroRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = hero.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      hero.style.setProperty('--mouse-x', `${x.toFixed(1)}%`);
+      hero.style.setProperty('--mouse-y', `${y.toFixed(1)}%`);
+    };
+
+    hero.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => hero.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   return (
-    <section className="hero" id="home">
+    <section className="hero" id="home" ref={heroRef}>
+      {/* Interactive Background Grid & Ambient Spotlight */}
+      <div className="hero-ambient-glow" aria-hidden="true" />
+      <div className="hero-grid-pattern" aria-hidden="true" />
+
       <div className="container">
         <div className="hero-content">
           {/* Status Pill */}
