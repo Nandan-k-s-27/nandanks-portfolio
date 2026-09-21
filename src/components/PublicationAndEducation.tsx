@@ -1,5 +1,6 @@
 import { BookOpen, GraduationCap, Award, Trophy, ExternalLink, CheckCircle } from 'lucide-react';
 import { GitHubIcon } from './Icons';
+import Sparkles from './Sparkles';
 
 export default function PublicationAndEducation() {
   return (
@@ -160,9 +161,11 @@ export default function PublicationAndEducation() {
                     <span className="text-sm font-bold text-[var(--text-primary)]">
                       1st Place Winner &bull; Hackathon
                     </span>
-                    <span className="text-[10px] px-2 py-0.5 rounded-[var(--radius-sm)] bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 font-semibold">
-                      CHAMPION
-                    </span>
+                    <Sparkles color="#f59e0b">
+                      <span className="text-[10px] px-2 py-0.5 rounded-[var(--radius-sm)] bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 font-semibold">
+                        CHAMPION
+                      </span>
+                    </Sparkles>
                   </div>
                   <p className="text-xs text-[var(--text-sec)] leading-relaxed">
                     Built a scalable full-stack E-Commerce platform using React (Vite), Node.js, Express, and MongoDB Atlas. Secured 1st position for UI performance and clean API data flows.

@@ -3,6 +3,7 @@ import { ArrowRight, Briefcase, GraduationCap, BookOpen, Trophy } from 'lucide-r
 import { GitHubIcon, LinkedInIcon, EmailIcon } from './Icons';
 import CountUp from './CountUp';
 import Magnetic from './Magnetic';
+import Sparkles from './Sparkles';
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
@@ -31,16 +32,18 @@ export default function Hero() {
 
       <div className="container">
         <div className="hero-content">
-          {/* Status Pill */}
-          <div className="hero-status-pill">
-            <span className="relative flex h-2 w-2 shrink-0">
-              <span className="status-beacon-pulse" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-            </span>
-            <span className="text-xs font-medium text-[var(--text-sec)]">
-              Bengaluru, India &bull; Open to Software Engineering Roles
-            </span>
-          </div>
+          {/* Status Pill with Josh Comeau Sparkles */}
+          <Sparkles color="var(--accent)" className="self-start">
+            <div className="hero-status-pill">
+              <span className="relative flex h-2 w-2 shrink-0">
+                <span className="status-beacon-pulse" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
+              <span className="text-xs font-medium text-[var(--text-sec)]">
+                Bengaluru, India &bull; Open to Software Engineering Roles
+              </span>
+            </div>
+          </Sparkles>
 
           {/* Main Headline */}
           <h1 className="hero-headline">
@@ -93,7 +96,9 @@ export default function Hero() {
 
             <div className="stat-item">
               <div className="flex items-center gap-1.5 text-[var(--text-muted)] mb-1">
-                <Trophy size={14} className="text-[var(--accent)]" />
+                <Sparkles color="#f59e0b" className="inline-flex">
+                  <Trophy size={14} className="text-[var(--accent)]" />
+                </Sparkles>
                 <span className="stat-label">Hackathons</span>
               </div>
               <div className="stat-value">
