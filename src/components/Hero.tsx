@@ -4,6 +4,7 @@ import { GitHubIcon, LinkedInIcon, EmailIcon } from './Icons';
 import CountUp from './CountUp';
 import Magnetic from './Magnetic';
 import Sparkles from './Sparkles';
+import HeroCanvas from './HeroCanvas';
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
@@ -26,9 +27,10 @@ export default function Hero() {
 
   return (
     <section className="hero" id="home" ref={heroRef}>
-      {/* Interactive Background Grid & Ambient Spotlight */}
+      {/* Interactive Background Grid, Ambient Spotlight & Floating Dot Canvas */}
       <div className="hero-ambient-glow" aria-hidden="true" />
       <div className="hero-grid-pattern" aria-hidden="true" />
+      <HeroCanvas />
 
       <div className="container">
         <div className="hero-content">
