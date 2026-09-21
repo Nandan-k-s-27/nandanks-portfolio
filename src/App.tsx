@@ -10,6 +10,7 @@ import PublicationAndEducation from './components/PublicationAndEducation';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import SectionRail from './components/SectionRail';
 
 export default function App() {
   useEffect(() => {
@@ -52,6 +53,7 @@ export default function App() {
       </main>
       <Footer />
       <ScrollToTop />
+      <SectionRail />
     </div>
   );
 }
