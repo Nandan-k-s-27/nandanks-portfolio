@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { GitHubIcon, LinkedInIcon, EmailIcon, ExternalLinkIcon } from './Icons';
 import { Copy, Check, Send, Globe, MapPin } from 'lucide-react';
+import Confetti from './Confetti';
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
@@ -42,16 +43,17 @@ export default function Contact() {
                 <div className="contact-card-icon">
                   <EmailIcon className="w-5 h-5" />
                 </div>
-                <div className="contact-card-body">
+                <div className="contact-card-body min-w-0">
                   <span className="contact-card-label">Primary Email</span>
                   <a
                     href={`mailto:${email}`}
-                    className="contact-card-value animated-link"
+                    className="contact-card-value animated-link truncate"
                   >
                     {email}
                   </a>
                 </div>
-                <div className="flex items-center gap-1.5 relative">
+                <div className="flex items-center gap-1.5 relative shrink-0">
+                  <Confetti trigger={copied} />
                   {copied && (
                     <div className="copy-tooltip" role="status" aria-live="polite">
                       <Check size={12} className="text-emerald-500 shrink-0" />
@@ -91,9 +93,9 @@ export default function Contact() {
                 <div className="contact-card-icon">
                   <LinkedInIcon className="w-5 h-5" />
                 </div>
-                <div className="contact-card-body">
+                <div className="contact-card-body min-w-0">
                   <span className="contact-card-label">LinkedIn</span>
-                  <span className="contact-card-value">linkedin.com/in/nandanks2003</span>
+                  <span className="contact-card-value truncate">linkedin.com/in/nandanks2003</span>
                 </div>
                 <ExternalLinkIcon className="text-[var(--text-muted)] w-4 h-4" />
               </a>

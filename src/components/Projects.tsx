@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react';
+import { useState, useRef, useEffect, type ReactNode } from 'react';
 import { GitHubIcon, ExternalLinkIcon } from './Icons';
 import { Video, Radio, Mic, Youtube } from 'lucide-react';
 import TiltCard from './TiltCard';
@@ -123,6 +123,30 @@ const PROJECTS: ProjectData[] = [
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState<'all' | 'realtime' | 'ai'>('all');
+  const filterGroupRef = useRef<HTMLDivElement>(null);
+  const filterBtnRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
+  const [filterPillStyle, setFilterPillStyle] = useState<{ left: number; width: number } | null>(null);
+
+  useEffect(() => {
+    const updatePill = () => {
+      const btn = filterBtnRefs.current.get(activeFilter);
+      const container = filterGroupRef.current;
+      if (!btn || !container) {
+        setFilterPillStyle(null);
+        return;
+      }
+      const containerRect = container.getBoundingClientRect();
+      const btnRect = btn.getBoundingClientRect();
+      setFilterPillStyle({
+        left: btnRect.left - containerRect.left,
+        width: btnRect.width,
+      });
+    };
+
+    updatePill();
+    window.addEventListener('resize', updatePill, { passive: true });
+    return () => window.removeEventListener('resize', updatePill);
+  }, [activeFilter]);
 
   const filteredProjects = activeFilter === 'all'
     ? PROJECTS
@@ -141,33 +165,58 @@ export default function Projects() {
             </p>
           </div>
 
-          {/* Filter Tabs */}
-          <div className="flex items-center gap-1 p-1 rounded-[var(--radius-sm)] bg-[var(--bg-secondary)] border border-[var(--border)] self-start md:self-auto">
+          {/* Filter Tabs with Spring Sliding Pill */}
+          <div
+            ref={filterGroupRef}
+            className="project-filter-group relative flex items-center gap-1 p-1 rounded-[var(--radius-sm)] bg-[var(--bg-secondary)] border border-[var(--border)] self-start md:self-auto max-w-full overflow-x-auto"
+          >
+            {filterPillStyle && (
+              <span
+                className="project-filter-pill"
+                style={{
+                  left: `${filterPillStyle.left}px`,
+                  width: `${filterPillStyle.width}px`,
+                }}
+                aria-hidden="true"
+              />
+            )}
             <button
+              ref={(el) => {
+                if (el) filterBtnRefs.current.set('all', el);
+                else filterBtnRefs.current.delete('all');
+              }}
               onClick={() => setActiveFilter('all')}
-              className={`px-3 py-1.5 rounded-[var(--radius-sm)] text-xs font-semibold transition-all active:scale-95 ${
+              className={`relative z-10 px-3 py-1.5 rounded-[var(--radius-sm)] text-xs font-semibold transition-colors shrink-0 ${
                 activeFilter === 'all'
-                  ? 'bg-[var(--bg-card)] text-[var(--text-primary)] shadow-sm'
+                  ? 'text-[var(--text-primary)]'
                   : 'text-[var(--text-sec)] hover:text-[var(--text-primary)]'
               }`}
             >
               All Projects ({PROJECTS.length})
             </button>
             <button
+              ref={(el) => {
+                if (el) filterBtnRefs.current.set('realtime', el);
+                else filterBtnRefs.current.delete('realtime');
+              }}
               onClick={() => setActiveFilter('realtime')}
-              className={`px-3 py-1.5 rounded-[var(--radius-sm)] text-xs font-semibold transition-all active:scale-95 ${
+              className={`relative z-10 px-3 py-1.5 rounded-[var(--radius-sm)] text-xs font-semibold transition-colors shrink-0 ${
                 activeFilter === 'realtime'
-                  ? 'bg-[var(--bg-card)] text-[var(--text-primary)] shadow-sm'
+                  ? 'text-[var(--text-primary)]'
                   : 'text-[var(--text-sec)] hover:text-[var(--text-primary)]'
               }`}
             >
               Real-Time &amp; Media
             </button>
             <button
+              ref={(el) => {
+                if (el) filterBtnRefs.current.set('ai', el);
+                else filterBtnRefs.current.delete('ai');
+              }}
               onClick={() => setActiveFilter('ai')}
-              className={`px-3 py-1.5 rounded-[var(--radius-sm)] text-xs font-semibold transition-all active:scale-95 ${
+              className={`relative z-10 px-3 py-1.5 rounded-[var(--radius-sm)] text-xs font-semibold transition-colors shrink-0 ${
                 activeFilter === 'ai'
-                  ? 'bg-[var(--bg-card)] text-[var(--text-primary)] shadow-sm'
+                  ? 'text-[var(--text-primary)]'
                   : 'text-[var(--text-sec)] hover:text-[var(--text-primary)]'
               }`}
             >
