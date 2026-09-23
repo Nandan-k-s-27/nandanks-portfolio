@@ -75,9 +75,9 @@ const PROJECTS: ProjectData[] = [
     category: 'ai',
     badge: 'Python / Whisper STT / Multi-Stage NLP',
     description:
-      'Fully offline Windows desktop voice assistant delivering 1–2s local response latency powered by OpenAI Whisper and a 4-tier NLP pipeline with sandboxed PowerShell safety architecture.',
+      'Fully offline Windows desktop voice assistant delivering 1-2s local response latency powered by OpenAI Whisper and a 4-tier NLP pipeline with sandboxed PowerShell safety architecture.',
     highlights: [
-      '100% offline speech recognition — zero external network dependencies for complete privacy',
+      '100% offline speech recognition with zero external network dependencies for complete privacy',
       'Multi-stage NLP resolution: Exact → Fuzzy → Phonetic → Semantic matching',
       '4-gate safety architecture with intent isolation preventing unauthorized command execution',
       'Controls 160+ system commands, window snapping, application launching, and macro recording',
@@ -104,7 +104,7 @@ const PROJECTS: ProjectData[] = [
     description:
       'Video comprehension and analysis pipeline transforming YouTube videos into structured summaries, interactive Mermaid mind maps, and automated knowledge check quizzes using Google Gemini AI.',
     highlights: [
-      'Configurable AI summary depth (10%–50%) with key insight extraction',
+      'Configurable AI summary depth (10% to 50%) with key insight extraction',
       'Automatic mind map generation rendered directly as interactive Mermaid diagrams',
       'Quiz generator with automated answer evaluation from transcript content',
       'Companion Chrome extension for direct one-click in-browser analysis',
@@ -155,13 +155,13 @@ export default function Projects() {
   return (
     <section className="section" id="projects">
       <div className="container">
-        <div className="section-label">04 — Projects</div>
+        <div className="section-label">04 / Projects</div>
 
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
           <div>
             <h2 className="section-title !mb-2">Featured Systems &amp; Applications</h2>
             <p className="text-[var(--text-sec)] text-base max-w-2xl">
-              Production architectures engineered from scratch — ranging from real-time WebRTC audio/video broadcasting to offline voice automation and AI analysis pipelines.
+              Production architectures engineered from scratch, ranging from real-time WebRTC audio/video broadcasting to offline voice automation and AI analysis pipelines.
             </p>
           </div>
 

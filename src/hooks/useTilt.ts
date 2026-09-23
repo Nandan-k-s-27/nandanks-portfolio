@@ -38,7 +38,7 @@ export function useTilt<T extends HTMLElement>() {
 
         el.style.transform = `perspective(${PERSPECTIVE}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(6px)`;
 
-        // Gloss overlay position (0%–100%)
+        // Gloss overlay position (0% - 100%)
         const gx = ((nx + 0.5) * 100).toFixed(1);
         const gy = ((ny + 0.5) * 100).toFixed(1);
         el.style.setProperty('--gloss-x', `${gx}%`);

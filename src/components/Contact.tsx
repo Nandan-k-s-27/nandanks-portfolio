@@ -24,10 +24,10 @@ export default function Contact() {
   return (
     <section className="section" id="contact">
       <div className="container">
-        <div className="section-label">06 — Contact</div>
+        <div className="section-label">06 / Contact</div>
         <h2 className="section-title !mb-4">Get In Touch</h2>
         <p className="text-[var(--text-sec)] text-base max-w-2xl mb-12">
-          Whether you have an open software engineering role, a technical inquiry, or would like to discuss distributed systems and real-time architectures — feel free to reach out.
+          Whether you have an open software engineering role, a technical inquiry, or would like to discuss distributed systems and real-time architectures, feel free to reach out.
         </p>
 
         <div className="contact-wrapper">

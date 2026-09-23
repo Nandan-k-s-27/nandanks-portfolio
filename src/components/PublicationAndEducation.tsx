@@ -6,7 +6,7 @@ export default function PublicationAndEducation() {
   return (
     <section className="section section-alt" id="academics">
       <div className="container">
-        <div className="section-label">05 — Academics &amp; Research</div>
+        <div className="section-label">05 / Academics &amp; Research</div>
         <h2 className="section-title !mb-4">Research, Education &amp; Honors</h2>
         <p className="text-[var(--text-sec)] text-base max-w-2xl mb-12">
           Academic foundation, peer-reviewed research in distributed audio streaming, and competitive hackathon achievements.
@@ -30,7 +30,7 @@ export default function PublicationAndEducation() {
                     Impact Factor: 8.152
                   </span>
                   <span className="text-xs text-[var(--text-muted)] font-medium">
-                    Vol. 13, Issue 1 &bull; Jan–Feb 2026
+                    Vol. 13, Issue 1 &bull; Jan - Feb 2026
                   </span>
                 </div>
 
@@ -108,7 +108,7 @@ export default function PublicationAndEducation() {
               <div className="education-card">
                 <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
                   <span className="px-2.5 py-0.5 text-xs font-semibold rounded-[var(--radius-sm)] bg-[var(--accent-subtle)] text-[var(--accent)] border border-[var(--accent-border)]">
-                    2024 – 2026
+                    2024 - 2026
                   </span>
                   <span className="cgpa-pill">CGPA: 8.88 / 10</span>
                 </div>
@@ -127,7 +127,7 @@ export default function PublicationAndEducation() {
               <div className="education-card">
                 <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
                   <span className="px-2.5 py-0.5 text-xs font-semibold rounded-[var(--radius-sm)] bg-[var(--badge-bg)] text-[var(--text-sec)] border border-[var(--badge-border)]">
-                    2021 – 2024
+                    2021 - 2024
                   </span>
                   <span className="cgpa-pill">CGPA: 7.93 / 10</span>
                 </div>

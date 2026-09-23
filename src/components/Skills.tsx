@@ -87,7 +87,7 @@ export default function Skills() {
   return (
     <section className="section section-alt" id="skills">
       <div className="container">
-        <div className="section-label">03 — Toolkit</div>
+        <div className="section-label">03 / Toolkit</div>
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
             <h2 className="section-title !mb-2">Skills &amp; Technologies</h2>

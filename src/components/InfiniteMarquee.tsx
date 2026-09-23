@@ -1,5 +1,5 @@
 /**
- * InfiniteMarquee — a seamlessly looping horizontal strip of tech/tool names.
+ * InfiniteMarquee: a seamlessly looping horizontal strip of tech/tool names.
  * Two rows scroll in opposite directions. Pauses on hover.
  * Fully respects prefers-reduced-motion.
  */

@@ -15,7 +15,7 @@ const EXPERIENCES: ExperienceItem[] = [
     role: 'Software Development Intern',
     company: 'Bandhan Technologies',
     location: 'Bengaluru, India',
-    period: 'April 2026 – Ongoing',
+    period: 'April 2026 - Ongoing',
     badge: 'Cloud & Data Engineering',
     highlights: [
       'Designed a proof-of-concept cloud data warehouse using Azure Data Factory (ADF) and Azure Databricks to automate ingestion, transformation, and storage in a structured Bronze/Silver architecture.',
@@ -40,7 +40,7 @@ const EXPERIENCES: ExperienceItem[] = [
     role: 'Full Stack Developer Intern',
     company: 'UnicornReady',
     location: 'Bengaluru, India (Remote)',
-    period: 'January 2026 – April 2026',
+    period: 'January 2026 - April 2026',
     badge: 'Full-Stack Web Engineering',
     highlights: [
       'Developed and shipped full-stack web features in a remote agile sprint environment, building responsive frontend interfaces in React and robust RESTful API endpoints in Node.js/Express.',
@@ -63,7 +63,7 @@ export default function Experience() {
   return (
     <section className="section" id="experience">
       <div className="container">
-        <div className="section-label">02 — Experience</div>
+        <div className="section-label">02 / Experience</div>
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
             <h2 className="section-title !mb-2">Industry Experience</h2>

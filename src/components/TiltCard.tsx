@@ -26,7 +26,7 @@ export default function TiltCard({
       className={`tilt-card${className ? ` ${className}` : ''}`}
       id={id}
     >
-      {/* Specular gloss overlay — follows cursor position via CSS vars */}
+      {/* Specular gloss overlay: follows cursor position via CSS vars */}
       <span className="tilt-gloss" aria-hidden="true" />
       {children}
     </Tag>

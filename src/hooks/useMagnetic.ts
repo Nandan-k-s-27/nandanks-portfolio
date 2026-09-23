@@ -1,10 +1,10 @@
 import { useRef, useEffect } from 'react';
 
 /**
- * Magnetic hover hook — element gently follows the cursor while hovered,
+ * Magnetic hover hook: element gently follows the cursor while hovered,
  * then springs back elastically on mouse leave.
  *
- * @param strength  How much the element moves (0–1). Default 0.35.
+ * @param strength  How much the element moves (0-1). Default 0.35.
  */
 export function useMagnetic<T extends HTMLElement>(strength = 0.35) {
   const ref = useRef<T>(null);

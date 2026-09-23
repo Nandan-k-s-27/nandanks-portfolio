@@ -5,7 +5,7 @@ export default function About() {
   return (
     <section className="section section-alt" id="about">
       <div className="container">
-        <div className="section-label">01 — About</div>
+        <div className="section-label">01 / About</div>
         <h2 className="section-title !mb-4">Engineering Profile &amp; Background</h2>
         <p className="text-[var(--text-sec)] text-base max-w-2xl mb-12">
           Software engineer focused on resilient distributed architectures, real-time multimedia delivery, and enterprise cloud data pipelines.
@@ -27,7 +27,7 @@ export default function About() {
             </p>
 
             <p>
-              Beyond core web services, I have implemented <strong>applied AI &amp; NLP systems</strong> — ranging from
+              Beyond core web services, I have implemented <strong>applied AI &amp; NLP systems</strong>, ranging from
               offline desktop voice automation with OpenAI Whisper and multi-stage phonetic matching, to integrating
               Google Gemini AI and MediaPipe for computer vision presence tracking and automated transcript analysis.
             </p>

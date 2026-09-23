@@ -12,7 +12,7 @@ export default defineConfig({
       manifest: {
         name: 'Nandan K S Portfolio',
         short_name: 'Nandan',
-        description: 'Portfolio of Nandan K S — Software Engineer & MCA Student at CMR Institute of Technology, Bengaluru.',
+        description: 'Portfolio of Nandan K S | Software Engineer & MCA Student at CMR Institute of Technology, Bengaluru.',
         theme_color: '#fafaf8',
         background_color: '#fafaf8',
         display: 'standalone',
